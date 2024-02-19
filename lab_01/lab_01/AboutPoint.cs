@@ -22,7 +22,11 @@ namespace lab_01
         {
             InitializeComponent();
             this.Location = new Point((int)((point.X - O.X) * Kx) + OX, OY - (int)((point.Y - O.Y) * Ky) + 66);
-            label4.Text = (point.COLOR == Color.Red || point.COLOR == Color.Salmon) ? "Первое" : "Второе";
+            if (point.COLOR == Color.Red || point.COLOR == Color.Salmon)
+                label4.Text = "Первое";
+            else if (point.COLOR == Color.Blue || point.COLOR == Color.Aqua)
+                label4.Text = "Второе";
+            else label4.Text = "Ортоцентр";
             label5.Text = point.X.ToString();
             label6.Text = point.Y.ToString();
 

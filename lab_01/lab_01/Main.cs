@@ -25,6 +25,9 @@ namespace lab_01
         AboutPoint f5;
         public Color LineColor;
         public List<Shape> tops = new List<Shape>();
+        List<Shape> res_red = new List<Shape>();
+        List<Shape> res_blue = new List<Shape>();
+        List<Shape> res = new List<Shape>();
         bool is_drag_and_dropping;
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
         int DX, DY;
@@ -76,13 +79,18 @@ namespace lab_01
 
         private bool does_this_point_already_exist(Shape point)
         {
-            bool res = false;
+            bool result = false;
             foreach (Shape i in tops)
             {
                 if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
-                    res = true;
+                    result = true;
             }
-            return res;
+            foreach (Shape i in res)
+            {
+                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                    result = true;
+            }
+            return result;
         }
         private void Main_MouseDown(object sender, MouseEventArgs e)
         {
@@ -202,18 +210,55 @@ namespace lab_01
             this.Invalidate();
         }
 
+        void draw_line_from_shape(Graphics g, Pen pen, Shape A, Shape B)
+        {
+            g.DrawLine(pen,
+                    new Point(OX + (int)((A.X - O.X) * Kx), OY - (int)((A.Y - O.Y) * Ky)),
+                    new Point(OX + (int)((B.X - O.X) * Kx), OY - (int)((B.Y - O.Y) * Ky)));
+        }
+
         private void Main_Paint(object sender, PaintEventArgs e)
         {
-            /*if (tops.Count > 1)
-                find_new_Kx_Ky(tops);*/
             Graphics g = e.Graphics;
-            Pen pen = new Pen(LineColor, (float)(5 / 4.0));
+            Pen pen = new Pen(LineColor, (float)(5));
+            if (res.Count == 8)
+            {
+                //find_new_Kx_Ky(res);
+                pen.Color = Color.Red;
+                draw_line_from_shape(g, pen, res_red[0], res_red[1]);
+                draw_line_from_shape(g, pen, res_red[0], res_red[2]);
+                draw_line_from_shape(g, pen, res_red[1], res_red[2]);
+                pen.Color = Color.Blue;
+                draw_line_from_shape(g, pen, res_blue[0], res_blue[1]);
+                draw_line_from_shape(g, pen, res_blue[0], res_blue[2]);
+                draw_line_from_shape(g, pen, res_blue[1], res_blue[2]);
+                Shape orth1 = res[6];
+                Shape orth2 = res[7];
+                pen.Width = (float)(5 / 4.0);
+                pen.Color = Color.DarkRed;
+                draw_line_from_shape(g, pen, orth1, res_red[0]);
+                draw_line_from_shape(g, pen, orth1, res_red[1]);
+                draw_line_from_shape(g, pen, orth1, res_red[2]);
+                pen.Color = Color.DarkBlue;
+                draw_line_from_shape(g, pen, orth2, res_blue[0]);
+                draw_line_from_shape(g, pen, orth2, res_blue[1]);
+                draw_line_from_shape(g, pen, orth2, res_blue[2]);
+                orth1.COLOR = Color.DarkRed;
+                orth1.draw(g, O, OX, OY, Kx, Ky);
+                orth2.COLOR = Color.DarkBlue;
+                orth2.draw(g, O, OX, OY, Kx, Ky);
+                pen.Width = (float)(5);
+                pen.Color = Color.Purple;
+                draw_line_from_shape(g, pen, orth1, orth2);
+
+            }
+            pen = new Pen(LineColor, (float)(5 / 4.0));
             g.DrawLine(pen, new Point(OX, 2000), new Point(OX, 0));
             g.DrawLine(pen, new Point(2000, OY), new Point(0, OY));
-            label4.Text = (O.X).ToString();
-            label2.Text = (O.Y).ToString();
-            label1.Text = ((this.ClientSize.Width - 100) / Kx + O.X).ToString();
-            label3.Text = ((this.ClientSize.Height - menuStrip1.Size.Height - 100) / Ky + O.Y).ToString();
+            label4.Text = string.Format("{0:f3}", O.X);
+            label2.Text = string.Format("{0:f3}", O.Y);
+            label1.Text = string.Format("{0:f3}", ((this.ClientSize.Width - 100) / Kx + O.X));
+            label3.Text = string.Format("{0:f3}", ((this.ClientSize.Height - menuStrip1.Size.Height - 100) / Ky + O.Y));
             foreach (Shape i in tops)
             {
                 if (i.DragAndDropped == true)
@@ -262,6 +307,15 @@ namespace lab_01
                     f5.Visible = true;
                 }
             }
+            for (int i = 6; i < res.Count; i++)
+            {
+                if (res[i].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
+                {
+                    f5 = new AboutPoint(res[i], O, OX, OY, Kx, Ky);
+                    f5.Owner = this;
+                    f5.Visible = true;
+                }
+            }
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -292,6 +346,129 @@ namespace lab_01
         {
             if (tops.Count > 1)
                 find_new_Kx_Ky(tops);
+            this.Invalidate();
+        }
+
+        private Shape Kramer(double a1, double b1, double c1, double a2, double b2, double c2)
+        {
+            Shape res;
+            double opred, opred_x, opred_y;
+            opred = a1 * b2 - a2 * b1;
+            opred_x = c1 * b2 - c2 * b1;
+            opred_y = a1 * c2 - a2 * c1;
+            res = new Shape(opred_x / opred, opred_y / opred, Color.Black);
+            return res;
+        }
+
+        private Shape find_orthocenter(Shape A, Shape B, Shape C)
+        {
+            double a1 = C.X - B.X;
+            double b1 = C.Y - B.Y;
+            double c1 = (C.X - B.X) * A.X + (C.Y - B.Y) * A.Y;
+            double a2 = C.X - A.X;
+            double b2 = C.Y - A.Y;
+            double c2 = (C.X - A.X) * B.X + (C.Y - A.Y) * B.Y;
+            return Kramer(a1, b1, c1, a2, b2, c2);
+        }
+
+        private double to_degrees(double a)
+        {
+            return (a * 180.0) / Math.PI;
+        }
+        private double find_angle(Shape A, Shape B)
+        {
+            double res;
+            if (A.Y == B.Y)
+                res = 0;
+            else if (A.X == B.X)
+                res = 90.0;
+            else
+            {
+                double tan = (Math.Max(A.Y, B.Y) - Math.Min(A.Y, B.Y)) /
+                    (Math.Max(A.X, B.X) - Math.Min(A.X, B.X));
+                res = to_degrees(Math.Atan(tan));
+                if (!(((A.X > B.X) && (A.Y > B.Y)) || ((A.X < B.X) && (A.Y < B.Y))))
+                    res = 180.0 - res;
+            }
+            return res;
+        }
+
+        private void посчитатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Shape> red = new List<Shape>();
+            List<Shape> blue = new List<Shape>();
+
+            double min_angle = 200;
+            foreach (Shape i in tops)
+                if (i.COLOR == Color.Red || i.COLOR == Color.Salmon)
+                    red.Add(i);
+                else
+                    blue.Add(i);
+            if (red.Count < 3 || blue.Count < 3) 
+            {
+                MessageBox.Show("Для проведения подсчётов требуется\n" +
+                    "не менее трёх элементов в каждом множестве.");
+                return;
+            }
+            else if (red.Count == 3 && Math.Abs(((red[2].X - red[0].X) / (red[1].X - red[0].X)) - 
+                    ((red[2].Y - red[0].Y) / (red[1].Y - red[0].Y))) < 0.01) 
+            {
+                    MessageBox.Show("Все точки в первом множестве лежат на одной прямой.\n" +
+                        "Нельзя построить треугольник.");
+                    return;
+            }
+            else if (blue.Count == 3 && Math.Abs(((blue[2].X - blue[0].X) / (blue[1].X - blue[0].X)) -
+                    ((blue[2].Y - blue[0].Y) / (blue[1].Y - blue[0].Y))) < 0.01)
+            {
+                MessageBox.Show("Все точки во втором множестве лежат на одной прямой.\n" +
+                    "Нельзя построить треугольник.");
+                return;
+            }
+
+            for (int i1 = 0; i1 < (red.Count - 2); i1++)
+            {
+                for (int i2 = i1 + 1; i2 < (red.Count - 1); i2++)
+                {
+                    for (int i3 = i2 + 1; i3 < red.Count; i3++)
+                    {
+                        Shape orthocenter1 = find_orthocenter(red[i1], red[i2], red[i3]);
+                        for (int j1 = 0; j1 < (blue.Count - 2); j1++)
+                        {
+                            for (int j2 = j1 + 1; j2 < (blue.Count - 1); j2++)
+                            {
+                                for (int j3 = j2 + 1; j3 < blue.Count; j3++)
+                                {
+                                    Shape orthocenter2 = find_orthocenter(blue[j1], blue[j2], blue[j3]);
+                                    double angle = find_angle(orthocenter1, orthocenter2);
+                                    if (angle < min_angle)
+                                    {
+                                        min_angle = angle;
+                                        res_red.Clear();
+                                        res_blue.Clear();
+                                        res.Clear();
+                                        res_red.Add(red[i1]); res_red.Add(red[i2]); res_red.Add(red[i3]);
+                                        res_blue.Add(blue[j1]); res_blue.Add(blue[j2]); res_blue.Add(blue[j3]);
+                                        res.Add(red[i1]); res.Add(red[i2]); res.Add(red[i3]);
+                                        res.Add(blue[j1]); res.Add(blue[j2]); res.Add(blue[j3]);
+                                        res.Add(orthocenter1);
+                                        res.Add(orthocenter2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            find_new_Kx_Ky(res);
+            this.Invalidate();
+            MessageBox.Show(string.Format("Угол с осью OX = {0:f2}°", min_angle));
+        }
+
+        private void сбросToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            res.Clear();
+            res_red.Clear();
+            res_blue.Clear();
             this.Invalidate();
         }
     }
