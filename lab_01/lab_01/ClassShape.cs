@@ -62,13 +62,13 @@ namespace lab_01
             set
             { offsetY = value; }
         }
-        public void draw(Graphics g, int OX, int OY, double K) 
+        public void draw(Graphics g, Shape O, int OX, int OY, double Kx, double Ky) 
         {
-            g.FillEllipse(brush, OX + (int)(x * K) - r, OY - (int)(y * K) - r, 2 * r, 2 * r);
+            g.FillEllipse(brush, OX + (int)((x - O.X) * Kx) - r, OY - (int)((y - O.Y) * Ky) - r, 2 * r, 2 * r);
         }
-        public bool IsInside(int xCursor, int yCursor, int OX, int OY, double K)
+        public bool IsInside(int xCursor, int yCursor, Shape O, int OX, int OY, double Kx, double Ky)
         {
-            if (Math.Sqrt(Math.Pow((x * K) + OX - xCursor, 2.0) + Math.Pow(OY - (y * K) - yCursor, 2.0)) <= (double)r)
+            if (Math.Sqrt(Math.Pow(((x - O.X) * Kx) + OX - xCursor, 2.0) + Math.Pow(OY - ((y - O.Y) * Ky) - yCursor, 2.0)) <= (double)r)
             {
                 return true;
             }

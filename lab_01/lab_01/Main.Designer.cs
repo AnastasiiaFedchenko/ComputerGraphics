@@ -38,11 +38,11 @@
             посчитатьToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
+            autoFocusToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            autoFocusToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -126,10 +126,18 @@
             toolStripMenuItem3.Text = "-";
             toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
+            // autoFocusToolStripMenuItem
+            // 
+            autoFocusToolStripMenuItem.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            autoFocusToolStripMenuItem.Name = "autoFocusToolStripMenuItem";
+            autoFocusToolStripMenuItem.Size = new Size(217, 62);
+            autoFocusToolStripMenuItem.Text = "AutoFocus";
+            autoFocusToolStripMenuItem.Click += autoFocusToolStripMenuItem_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1395, 609);
+            label1.Location = new Point(1359, 1329);
             label1.Name = "label1";
             label1.Size = new Size(0, 32);
             label1.TabIndex = 1;
@@ -137,7 +145,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 597);
+            label2.Location = new Point(12, 1329);
             label2.Name = "label2";
             label2.Size = new Size(0, 32);
             label2.TabIndex = 2;
@@ -145,7 +153,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(717, 66);
+            label3.Location = new Point(106, 79);
             label3.Name = "label3";
             label3.Size = new Size(0, 32);
             label3.TabIndex = 3;
@@ -153,17 +161,10 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(717, 1454);
+            label4.Location = new Point(106, 1404);
             label4.Name = "label4";
             label4.Size = new Size(0, 32);
             label4.TabIndex = 4;
-            // 
-            // autoFocusToolStripMenuItem
-            // 
-            autoFocusToolStripMenuItem.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            autoFocusToolStripMenuItem.Name = "autoFocusToolStripMenuItem";
-            autoFocusToolStripMenuItem.Size = new Size(217, 62);
-            autoFocusToolStripMenuItem.Text = "AutoFocus";
             // 
             // Main
             // 
