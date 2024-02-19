@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Бауманка\\КГ\\lab_01\\lab_01\\lab_01.csproj": {}
+    "D:\\Бауманка\\КГ\\ComputerGraphic\\lab_01\\lab_01\\lab_01.csproj": {}
   },
   "projects": {
-    "D:\\Бауманка\\КГ\\lab_01\\lab_01\\lab_01.csproj": {
+    "D:\\Бауманка\\КГ\\ComputerGraphic\\lab_01\\lab_01\\lab_01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Бауманка\\КГ\\lab_01\\lab_01\\lab_01.csproj",
+        "projectUniqueName": "D:\\Бауманка\\КГ\\ComputerGraphic\\lab_01\\lab_01\\lab_01.csproj",
         "projectName": "lab_01",
-        "projectPath": "D:\\Бауманка\\КГ\\lab_01\\lab_01\\lab_01.csproj",
+        "projectPath": "D:\\Бауманка\\КГ\\ComputerGraphic\\lab_01\\lab_01\\lab_01.csproj",
         "packagesPath": "C:\\Users\\anast\\.nuget\\packages\\",
-        "outputPath": "D:\\Бауманка\\КГ\\lab_01\\lab_01\\obj\\",
+        "outputPath": "D:\\Бауманка\\КГ\\ComputerGraphic\\lab_01\\lab_01\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

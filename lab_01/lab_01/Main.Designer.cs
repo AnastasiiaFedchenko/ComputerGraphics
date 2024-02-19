@@ -34,10 +34,15 @@
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
             обАвтореToolStripMenuItem = new ToolStripMenuItem();
             добавитьТочкуВПервоеМножествоToolStripMenuItem = new ToolStripMenuItem();
-            добавитьТочкуToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripComboBox1 = new ToolStripComboBox();
             посчитатьToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            autoFocusToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,10 +50,10 @@
             // 
             menuStrip1.BackColor = SystemColors.GradientInactiveCaption;
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { информацияToolStripMenuItem, добавитьТочкуВПервоеМножествоToolStripMenuItem, добавитьТочкуToolStripMenuItem, toolStripMenuItem1, toolStripComboBox1, посчитатьToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { информацияToolStripMenuItem, добавитьТочкуВПервоеМножествоToolStripMenuItem, toolStripComboBox1, посчитатьToolStripMenuItem, toolStripMenuItem2, toolStripMenuItem3, autoFocusToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1474, 66);
+            menuStrip1.Size = new Size(1470, 66);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -85,16 +90,6 @@
             добавитьТочкуВПервоеМножествоToolStripMenuItem.TextDirection = ToolStripTextDirection.Horizontal;
             добавитьТочкуВПервоеМножествоToolStripMenuItem.Click += добавитьТочкуВПервоеМножествоToolStripMenuItem_Click;
             // 
-            // добавитьТочкуToolStripMenuItem
-            // 
-            добавитьТочкуToolStripMenuItem.Name = "добавитьТочкуToolStripMenuItem";
-            добавитьТочкуToolStripMenuItem.Size = new Size(20, 62);
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(20, 62);
-            // 
             // toolStripComboBox1
             // 
             toolStripComboBox1.BackColor = SystemColors.Window;
@@ -115,12 +110,72 @@
             посчитатьToolStripMenuItem.Size = new Size(218, 62);
             посчитатьToolStripMenuItem.Text = "Посчитать";
             // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(60, 62);
+            toolStripMenuItem2.Text = "+";
+            toolStripMenuItem2.Click += toolStripMenuItem2_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(50, 62);
+            toolStripMenuItem3.Text = "-";
+            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(1395, 609);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 32);
+            label1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 597);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 32);
+            label2.TabIndex = 2;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(717, 66);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 32);
+            label3.TabIndex = 3;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(717, 1454);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 32);
+            label4.TabIndex = 4;
+            // 
+            // autoFocusToolStripMenuItem
+            // 
+            autoFocusToolStripMenuItem.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            autoFocusToolStripMenuItem.Name = "autoFocusToolStripMenuItem";
+            autoFocusToolStripMenuItem.Size = new Size(217, 62);
+            autoFocusToolStripMenuItem.Text = "AutoFocus";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoValidate = AutoValidate.Disable;
             BackColor = Color.White;
-            ClientSize = new Size(1474, 1495);
+            ClientSize = new Size(1470, 1491);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -148,9 +203,14 @@
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
         private ToolStripMenuItem обАвтореToolStripMenuItem;
         private ToolStripMenuItem добавитьТочкуВПервоеМножествоToolStripMenuItem;
-        private ToolStripMenuItem добавитьТочкуToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripComboBox toolStripComboBox1;
         private ToolStripMenuItem посчитатьToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private ToolStripMenuItem autoFocusToolStripMenuItem;
     }
 }

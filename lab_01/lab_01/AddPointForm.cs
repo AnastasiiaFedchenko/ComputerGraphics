@@ -14,6 +14,9 @@ namespace lab_01
 {
     public partial class AddPointForm : Form
     {
+        int OX;
+        int OY;
+        double K;
         public event NewPointCanBeAdded NP;
         public AddPointForm()
         {
@@ -27,20 +30,20 @@ namespace lab_01
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int x, y;
-            if (int.TryParse(textBox1.Text, out x) && int.TryParse(textBox2.Text, out y))
+            double x, y;
+            if (double.TryParse(textBox1.Text, out x) && double.TryParse(textBox2.Text, out y))
             {
                 Color color_now = radioButton1.Checked ? Color.Red : Color.Blue;
                 Shape new_point = new Shape(x, y, color_now);
                 NP(this, new_point);
             }
-            else if (!int.TryParse(textBox1.Text, out x) && int.TryParse(textBox2.Text, out y))
+            else if (!double.TryParse(textBox1.Text, out x) && double.TryParse(textBox2.Text, out y))
             {
                 MessageBox.Show("Введённое значение x \nне соответствует формату вещественных чисел." +
                     "\nВвод осуществляется через запятую.");
                 return;
             }
-            else if (int.TryParse(textBox1.Text, out x) && !int.TryParse(textBox2.Text, out y))
+            else if (double.TryParse(textBox1.Text, out x) && !double.TryParse(textBox2.Text, out y))
             {
                 MessageBox.Show("Введённое значение y \nне соответствует формату вещественных чисел." +
                     "\nВвод осуществляется через запятую.");

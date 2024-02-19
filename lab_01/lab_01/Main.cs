@@ -27,9 +27,9 @@ namespace lab_01
         public List<Shape> tops = new List<Shape>();
         bool is_drag_and_dropping;
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
-        //List<DelPoint> DeletingPoints = new List<DelPoint>();
         int DX, DY;
         int OX, OY; // начало координат
+        double K; // коэффициент масштабирования 
         public Main()
         {
             InitializeComponent();
@@ -37,7 +37,9 @@ namespace lab_01
             f4 = new AddPointForm();
             f4.NP += NewPointHasBeenAdded;
             OX = (int)(this.ClientSize.Width / 2);
-            OY = (int)(this.ClientSize.Height / 2);
+            OY = (int)((this.ClientSize.Height - menuStrip1.Size.Height) / 2 + menuStrip1.Size.Height);
+            K = 100; // единичный отрезок
+            LineColor = Color.Black;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -67,20 +69,29 @@ namespace lab_01
             f4.Visible = true;
             f4.Activate();
         }
+
+        private bool does_this_point_already_exist(Shape point) 
+        {
+            bool res = false;
+            foreach (Shape i in tops)
+            {
+                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                    res = true;
+            }
+            return res;
+        }
         private void Main_MouseDown(object sender, MouseEventArgs e)
         {
             ThePointsDragAndDropping.Clear();
-            //Redo.Clear();
             if (e.Button == MouseButtons.Right)//удаление точки
             {
 
                 bool found = false;
                 for (int i = tops.Count - 1; i >= 0 && found == false; i--)
                 {
-                    if (tops[i].IsInside(e.Location.X, e.Location.Y))
+                    if (tops[i].IsInside(e.Location.X, e.Location.Y, OX, OY, K))
                     {
                         found = true;
-                        //Undo.Add(new DelPoint(tops[i], i));
                         tops.RemoveAt(i);
                     }
                 }
@@ -90,13 +101,13 @@ namespace lab_01
                 bool Inside = false;
                 for (int i = 0; i < tops.Count; i++)//перемещение точек
                 {
-                    if (tops[i].IsInside(e.Location.X, e.Location.Y))
+                    if (tops[i].IsInside(e.Location.X, e.Location.Y, OX, OY, K))
                     {
                         Inside = true;
                         is_drag_and_dropping = true;
                         tops[i].DragAndDropped = true;
-                        tops[i].OffsetX = tops[i].X - e.Location.X;
-                        tops[i].OffsetY = tops[i].Y - e.Location.Y;
+                        tops[i].OffsetX = (int)(tops[i].X * K) + OX - e.Location.X;
+                        tops[i].OffsetY = OY - (int)(tops[i].Y * K) - e.Location.Y;
                         DX = e.Location.X;
                         DY = e.Location.Y;
                         ThePointsDragAndDropping.Add(new MovePoint(0, 0, i));
@@ -106,11 +117,43 @@ namespace lab_01
                 if (Inside == false)
                 {
                     Color color_now = (toolStripComboBox1.SelectedIndex == 0) ? Color.Red : Color.Blue;
-                    tops.Add(new Shape(e.Location.X, e.Location.Y, color_now));
+                    Shape new_point = new Shape((e.Location.X - OX) / K, (OY - e.Location.Y) / K, color_now);
+                    if (does_this_point_already_exist(new_point))
+                        MessageBox.Show("Точка со схожими координатами уже существует.");
+                    else
+                        tops.Add(new_point);
                 }
             }
             this.Invalidate();
         }
+
+        Shape lowest_and_smallest(Shape[] arr) 
+        {
+            Shape res = new Shape(arr[0].X, arr[0].Y, Color.Purple);
+            foreach (Shape i in arr)
+            {
+                if (i.X < res.X)
+                    res.X = i.X;
+                if (i.Y < res.Y)
+                    res.Y = i.Y;
+            }
+            return res;
+        }
+        Shape highest_and_biggest(Shape[] arr)
+        {
+            Shape res = new Shape(arr[0].X, arr[0].Y, Color.Purple);
+            foreach (Shape i in arr)
+            {
+                if (i.X > res.X)
+                    res.X = i.X;
+                if (i.Y > res.Y)
+                    res.Y = i.Y;
+            }
+            return res;
+        }
+
+        
+
         private void Main_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -119,8 +162,8 @@ namespace lab_01
                 {
                     if (i.DragAndDropped)
                     {
-                        i.X = e.Location.X + i.OffsetX;
-                        i.Y = e.Location.Y + i.OffsetY;
+                        i.X = (e.Location.X - OX + i.OffsetX) / K;
+                        i.Y = (OY - e.Location.Y + i.OffsetY) / K;
                     }
                 }
                 this.Refresh();
@@ -137,56 +180,24 @@ namespace lab_01
                     ThePointsDragAndDropping[i].DX = DX;
                     ThePointsDragAndDropping[i].DY = DY;
                 }
-                /*if (ThePointsDragAndDropping.Count() == 1)
-                {
-                    Undo.Add(ThePointsDragAndDropping[0]);
-                    button4.Enabled = true;
-                }
-                else
-                {
-                    Undo.Add(new MovePoints(ThePointsDragAndDropping));
-                    button4.Enabled = true;
-                }*/
             }
-            /*if (!(Undo[Undo.Count - 1] is DelPoints || (Undo[Undo.Count - 1] is DelPoint && Undo[Undo.Count - 1].IsConnected == true)))
-            {
-                JarvisAlgorithm(tops);
-                DeletingPoints.Clear();
-                for (int i = 0; i < tops.Count; i++)
-                {
-                    if (tops[i].InTheShell == false)
-                    {
-                        DeletingPoints.Add(new DelPoint(tops[i], i, true));
-                    }
-                }
-                if (DeletingPoints.Count == 1)
-                {
-                    Undo.Add(DeletingPoints[0]);
-                }
-                if (DeletingPoints.Count > 1)
-                {
-                    Undo.Add(new DelPoints(DeletingPoints));
-                }
-            }*/
 
             foreach (Shape i in tops)
                 i.DragAndDropped = false;
-            /*for (int i = 0; i < tops.Count; i++)
-            {
-                if (!tops[i].InTheShell)
-                {
-                    tops.RemoveAt(i);
-                    i--;
-                }
-            }*/
             is_drag_and_dropping = false;
             this.Invalidate();
         }
 
         private void Main_Paint(object sender, PaintEventArgs e)
         {
-            //Pen pen = new Pen(LineColor, (float)(5 / 4.0));
             Graphics g = e.Graphics;
+            Pen pen = new Pen(LineColor, (float)(5 / 4.0));
+            g.DrawLine(pen, new Point(OX, 2000), new Point(OX, 0));
+            g.DrawLine(pen, new Point(2000, OY), new Point(0, OY));
+            label1.Text = (this.ClientSize.Width / (K * 2)).ToString();
+            label2.Text = (-(this.ClientSize.Width / (K * 2))).ToString();
+            label3.Text = ((this.ClientSize.Height - menuStrip1.Size.Height) / (K * 2)).ToString();
+            label4.Text = (-((this.ClientSize.Height - menuStrip1.Size.Height) / (K * 2))).ToString();
             foreach (Shape i in tops)
             {
                 if (i.DragAndDropped == true)
@@ -203,7 +214,7 @@ namespace lab_01
                     else if (i.COLOR == Color.Aqua)
                         i.COLOR = Color.Blue;
                 }
-                i.draw(g);
+                i.draw(g, OX, OY, K);
             }
 
         }
@@ -211,7 +222,10 @@ namespace lab_01
         public void NewPointHasBeenAdded(object sender, Shape e)
         {
             e.DragAndDropped = false;
-            tops.Add(e);
+            if (does_this_point_already_exist(e))
+                MessageBox.Show("Точка со схожими координатами уже существует.");
+            else
+                tops.Add(e);
             this.Invalidate();
         }
 
@@ -225,13 +239,30 @@ namespace lab_01
         {
             for (int i = 0; i < tops.Count; i++)
             {
-                if (tops[i].IsInside(e.Location.X, e.Location.Y))
+                if (tops[i].IsInside(e.Location.X, e.Location.Y, OX, OY, K))
                 {
-                    f5 = new AboutPoint(tops[i]);
+                    f5 = new AboutPoint(tops[i], OX, OY, K);
                     f5.Owner = this;
                     f5.Visible = true;
                 }
             }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            K = K + 5;
+            this.Invalidate();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if ((K - 5) < 1)
+                MessageBox.Show("Дальше уменьшение невозможно.");
+            else if ((K - 5) < 1)
+                K = K - 0.1;
+            else
+                K = K - 5;
+            this.Invalidate();
         }
     }
 }
