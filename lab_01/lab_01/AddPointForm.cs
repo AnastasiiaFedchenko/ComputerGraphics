@@ -56,5 +56,10 @@ namespace lab_01
                 return;
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -62,9 +62,9 @@ namespace lab_01
             set
             { offsetY = value; }
         }
-        public void draw(Graphics g, Shape O, int OX, int OY, double Kx, double Ky) 
+        public void draw(Graphics g, int x_pixel, int y_pixel) 
         {
-            g.FillEllipse(brush, OX + (int)((x - O.X) * Kx) - r, OY - (int)((y - O.Y) * Ky) - r, 2 * r, 2 * r);
+            g.FillEllipse(brush, x_pixel - r, y_pixel - r, 2 * r, 2 * r);
         }
         public bool IsInside(int xCursor, int yCursor, Shape O, int OX, int OY, double Kx, double Ky)
         {

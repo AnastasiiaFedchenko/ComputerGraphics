@@ -27,7 +27,7 @@ namespace lab_01
         public List<Shape> tops = new List<Shape>();
         List<Shape> res_red = new List<Shape>();
         List<Shape> res_blue = new List<Shape>();
-        List<Shape> res = new List<Shape>();
+        //List<Shape> res = new List<Shape>();
         bool is_drag_and_dropping;
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
         int DX, DY;
@@ -50,7 +50,7 @@ namespace lab_01
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            DoubleBuffered = true;
         }
         private void објвтореToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -85,19 +85,44 @@ namespace lab_01
                 if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
                     result = true;
             }
-            foreach (Shape i in res)
+            foreach (Shape i in res_red)
+            {
+                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                    result = true;
+            }
+            foreach (Shape i in res_blue)
             {
                 if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
                     result = true;
             }
             return result;
         }
+
+        int to_pixels_X(Shape point) 
+        {
+            return OX + (int)((point.X - O.X) * Kx);
+        }
+
+        int to_pixels_Y(Shape point)
+        {
+            return OY - (int)((point.Y - O.Y) * Ky);
+        }
+
+        double to_original_X(int x)
+        {
+            return (x - OX) / Kx + O.X;
+        }
+
+        double to_original_Y(int y)
+        {
+            return (OY - y) / Ky + O.Y;
+        }
+
         private void Main_MouseDown(object sender, MouseEventArgs e)
         {
             ThePointsDragAndDropping.Clear();
             if (e.Button == MouseButtons.Right)//удаление точки
             {
-
                 bool found = false;
                 for (int i = tops.Count - 1; i >= 0 && found == false; i--)
                 {
@@ -118,18 +143,25 @@ namespace lab_01
                         Inside = true;
                         is_drag_and_dropping = true;
                         tops[i].DragAndDropped = true;
-                        tops[i].OffsetX = (int)((tops[i].X - O.X) * Kx) + OX - e.Location.X;
-                        tops[i].OffsetY = OY - (int)((tops[i].Y - O.Y) * Ky) - e.Location.Y;
+                        tops[i].OffsetX = to_pixels_X(tops[i]) - e.Location.X;
+                        tops[i].OffsetY = to_pixels_Y(tops[i]) - e.Location.Y;
+                        //tops[i].OffsetX = (int)((tops[i].X - O.X) * Kx) + OX - e.Location.X;
+                        //tops[i].OffsetY = OY - (int)((tops[i].Y - O.Y) * Ky) - e.Location.Y;
                         DX = e.Location.X;
                         DY = e.Location.Y;
                         ThePointsDragAndDropping.Add(new MovePoint(0, 0, i));
 
                     }
                 }
-                if (Inside == false)
+                if (res_red.Count == 4 && res_red[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
+                    Inside = true;
+                if (res_blue.Count == 4 && res_blue[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
+                    Inside = true;
+                if (Inside == false) // добавление новой точки
                 {
                     Color color_now = (toolStripComboBox1.SelectedIndex == 0) ? Color.Red : Color.Blue;
-                    Shape new_point = new Shape((e.Location.X - OX) / Kx + O.X, (OY - e.Location.Y) / Ky + O.Y, color_now);
+                    Shape new_point = new Shape(to_original_X(e.Location.X), to_original_Y(e.Location.Y), color_now);
+                    //Shape new_point = new Shape((e.Location.X - OX) / Kx + O.X, (OY - e.Location.Y) / Ky + O.Y, color_now);
                     if (does_this_point_already_exist(new_point))
                         MessageBox.Show("“очка со схожими координатами уже существует.");
                     else
@@ -141,27 +173,27 @@ namespace lab_01
 
         private Shape lowest_and_smallest(List<Shape> arr)
         {
-            Shape res = new Shape(arr[0].X, arr[0].Y, Color.Purple);
+            Shape result = new Shape(arr[0].X, arr[0].Y, Color.Purple);
             foreach (Shape i in arr)
             {
-                if (i.X < res.X)
-                    res.X = i.X;
-                if (i.Y < res.Y)
-                    res.Y = i.Y;
+                if (i.X < result.X)
+                    result.X = i.X;
+                if (i.Y < result.Y)
+                    result.Y = i.Y;
             }
-            return res;
+            return result;
         }
         private Shape highest_and_biggest(List<Shape> arr)
         {
-            Shape res = new Shape(arr[0].X, arr[0].Y, Color.Purple);
+            Shape result = new Shape(arr[0].X, arr[0].Y, Color.Purple);
             foreach (Shape i in arr)
             {
-                if (i.X > res.X)
-                    res.X = i.X;
-                if (i.Y > res.Y)
-                    res.Y = i.Y;
+                if (i.X > result.X)
+                    result.X = i.X;
+                if (i.Y > result.Y)
+                    result.Y = i.Y;
             }
-            return res;
+            return result;
         }
 
         private void find_new_Kx_Ky(List<Shape> arr)
@@ -212,47 +244,53 @@ namespace lab_01
 
         void draw_line_from_shape(Graphics g, Pen pen, Shape A, Shape B)
         {
+            
             g.DrawLine(pen,
+                    new Point(to_pixels_X(A), to_pixels_Y(A)),
+                    new Point(to_pixels_X(B), to_pixels_Y(B)));
+            /*g.DrawLine(pen,
                     new Point(OX + (int)((A.X - O.X) * Kx), OY - (int)((A.Y - O.Y) * Ky)),
-                    new Point(OX + (int)((B.X - O.X) * Kx), OY - (int)((B.Y - O.Y) * Ky)));
+                    new Point(OX + (int)((B.X - O.X) * Kx), OY - (int)((B.Y - O.Y) * Ky)));*/
+        }
+
+        void draw_result_of_calculation(Graphics g) 
+        {
+            Pen pen = new Pen(LineColor, (float)(5));
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = i; j < 3; j++)
+                {
+                    pen.Color = Color.Red;
+                    draw_line_from_shape(g, pen, res_red[i], res_red[j]);
+                    pen.Color = Color.Blue;
+                    draw_line_from_shape(g, pen, res_blue[i], res_blue[j]);
+                }
+            }
+            Shape orth1 = res_red[3];
+            Shape orth2 = res_blue[3];
+            pen.Width = (float)(5 / 4.0);
+            for (int i = 0; i < 3; i++)
+            {
+                pen.Color = Color.DarkRed;
+                draw_line_from_shape(g, pen, orth1, res_red[i]);
+                pen.Color = Color.DarkBlue;
+                draw_line_from_shape(g, pen, orth2, res_blue[i]);
+            }
+            pen.Width = (float)(5);
+            pen.Color = Color.Purple;
+            draw_line_from_shape(g, pen, orth1, orth2);
+            orth1.COLOR = Color.DarkRed;
+            orth1.draw(g, to_pixels_X(orth1), to_pixels_Y(orth1));
+            orth2.COLOR = Color.DarkBlue;
+            orth2.draw(g, to_pixels_X(orth2), to_pixels_Y(orth2));
         }
 
         private void Main_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Pen pen = new Pen(LineColor, (float)(5));
-            if (res.Count == 8)
-            {
-                //find_new_Kx_Ky(res);
-                pen.Color = Color.Red;
-                draw_line_from_shape(g, pen, res_red[0], res_red[1]);
-                draw_line_from_shape(g, pen, res_red[0], res_red[2]);
-                draw_line_from_shape(g, pen, res_red[1], res_red[2]);
-                pen.Color = Color.Blue;
-                draw_line_from_shape(g, pen, res_blue[0], res_blue[1]);
-                draw_line_from_shape(g, pen, res_blue[0], res_blue[2]);
-                draw_line_from_shape(g, pen, res_blue[1], res_blue[2]);
-                Shape orth1 = res[6];
-                Shape orth2 = res[7];
-                pen.Width = (float)(5 / 4.0);
-                pen.Color = Color.DarkRed;
-                draw_line_from_shape(g, pen, orth1, res_red[0]);
-                draw_line_from_shape(g, pen, orth1, res_red[1]);
-                draw_line_from_shape(g, pen, orth1, res_red[2]);
-                pen.Color = Color.DarkBlue;
-                draw_line_from_shape(g, pen, orth2, res_blue[0]);
-                draw_line_from_shape(g, pen, orth2, res_blue[1]);
-                draw_line_from_shape(g, pen, orth2, res_blue[2]);
-                orth1.COLOR = Color.DarkRed;
-                orth1.draw(g, O, OX, OY, Kx, Ky);
-                orth2.COLOR = Color.DarkBlue;
-                orth2.draw(g, O, OX, OY, Kx, Ky);
-                pen.Width = (float)(5);
-                pen.Color = Color.Purple;
-                draw_line_from_shape(g, pen, orth1, orth2);
-
-            }
-            pen = new Pen(LineColor, (float)(5 / 4.0));
+            if ((res_red.Count + res_blue.Count) == 8)
+                draw_result_of_calculation(g);
+            Pen pen = new Pen(LineColor, (float)(5 / 4.0));
             g.DrawLine(pen, new Point(OX, 2000), new Point(OX, 0));
             g.DrawLine(pen, new Point(2000, OY), new Point(0, OY));
             label4.Text = string.Format("{0:f3}", O.X);
@@ -275,7 +313,7 @@ namespace lab_01
                     else if (i.COLOR == Color.Aqua)
                         i.COLOR = Color.Blue;
                 }
-                i.draw(g, O, OX, OY, Kx, Ky);
+                i.draw(g, to_pixels_X(i), to_pixels_Y(i));
             }
 
         }
@@ -307,14 +345,17 @@ namespace lab_01
                     f5.Visible = true;
                 }
             }
-            for (int i = 6; i < res.Count; i++)
+            if (res_red.Count() == 4 && res_red[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky)) 
             {
-                if (res[i].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
-                {
-                    f5 = new AboutPoint(res[i], O, OX, OY, Kx, Ky);
-                    f5.Owner = this;
-                    f5.Visible = true;
-                }
+                f5 = new AboutPoint(res_red[3], O, OX, OY, Kx, Ky);
+                f5.Owner = this;
+                f5.Visible = true;
+            }
+            if (res_blue.Count() == 4 && res_blue[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
+            {
+                f5 = new AboutPoint(res_blue[3], O, OX, OY, Kx, Ky);
+                f5.Owner = this;
+                f5.Visible = true;
             }
         }
 
@@ -445,13 +486,10 @@ namespace lab_01
                                         min_angle = angle;
                                         res_red.Clear();
                                         res_blue.Clear();
-                                        res.Clear();
                                         res_red.Add(red[i1]); res_red.Add(red[i2]); res_red.Add(red[i3]);
                                         res_blue.Add(blue[j1]); res_blue.Add(blue[j2]); res_blue.Add(blue[j3]);
-                                        res.Add(red[i1]); res.Add(red[i2]); res.Add(red[i3]);
-                                        res.Add(blue[j1]); res.Add(blue[j2]); res.Add(blue[j3]);
-                                        res.Add(orthocenter1);
-                                        res.Add(orthocenter2);
+                                        res_red.Add(orthocenter1);
+                                        res_blue.Add(orthocenter2);
                                     }
                                 }
                             }
@@ -459,14 +497,16 @@ namespace lab_01
                     }
                 }
             }
-            find_new_Kx_Ky(res);
+            List <Shape> temp = new List <Shape>();
+            temp.AddRange(res_red);
+            temp.AddRange(res_blue);
+            find_new_Kx_Ky(temp);
             this.Invalidate();
             MessageBox.Show(string.Format("”гол с осью OX = {0:f2}∞", min_angle));
         }
 
         private void сбросToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            res.Clear();
             res_red.Clear();
             res_blue.Clear();
             this.Invalidate();
