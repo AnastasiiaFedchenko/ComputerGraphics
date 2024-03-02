@@ -27,8 +27,8 @@ namespace lab_01
             else if (point.COLOR == Color.Blue || point.COLOR == Color.Aqua)
                 label4.Text = "Второе";
             else label4.Text = "Ортоцентр";
-            label5.Text = point.X.ToString();
-            label6.Text = point.Y.ToString();
+            label5.Text = string.Format("{0:f3}", point.X);
+            label6.Text = string.Format("{0:f3}", point.Y);
 
         }
 
