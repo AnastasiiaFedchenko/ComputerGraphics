@@ -33,13 +33,13 @@
             toolStrip1 = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             toolStripLabel2 = new ToolStripLabel();
-            toolStripTextBox1 = new ToolStripTextBox();
+            degreeTextBox = new ToolStripTextBox();
             toolStripComboBox1 = new ToolStripComboBox();
             toolStripLabel3 = new ToolStripLabel();
             toolStripLabel4 = new ToolStripLabel();
-            toolStripTextBox2 = new ToolStripTextBox();
+            dxTextBox = new ToolStripTextBox();
             toolStripLabel5 = new ToolStripLabel();
-            toolStripTextBox3 = new ToolStripTextBox();
+            dyTextBox = new ToolStripTextBox();
             toolStripLabel6 = new ToolStripLabel();
             toolStripLabel8 = new ToolStripLabel();
             toolStripTextBox4 = new ToolStripTextBox();
@@ -49,7 +49,10 @@
             toolStripTextBox6 = new ToolStripTextBox();
             toolStripLabel7 = new ToolStripLabel();
             toolStripTextBox7 = new ToolStripTextBox();
-            toolStripButton1 = new ToolStripButton();
+            drawButton = new ToolStripButton();
+            toolStripButton4 = new ToolStripButton();
+            toolStripButton5 = new ToolStripButton();
+            toolStripButton6 = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripLabel11 = new ToolStripLabel();
             toolStripButton2 = new ToolStripButton();
@@ -63,7 +66,7 @@
             // 
             toolStrip1.Dock = DockStyle.Left;
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2, toolStripTextBox1, toolStripComboBox1, toolStripLabel3, toolStripLabel4, toolStripTextBox2, toolStripLabel5, toolStripTextBox3, toolStripLabel6, toolStripLabel8, toolStripTextBox4, toolStripLabel9, toolStripTextBox5, toolStripLabel10, toolStripTextBox6, toolStripLabel7, toolStripTextBox7, toolStripButton1, toolStripSeparator1, toolStripLabel11, toolStripButton2, toolStripButton3 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2, degreeTextBox, toolStripComboBox1, toolStripLabel3, toolStripLabel4, dxTextBox, toolStripLabel5, dyTextBox, toolStripLabel6, toolStripLabel8, toolStripTextBox4, toolStripLabel9, toolStripTextBox5, toolStripLabel10, toolStripTextBox6, toolStripLabel7, toolStripTextBox7, drawButton, toolStripButton4, toolStripButton5, toolStripButton6, toolStripSeparator1, toolStripLabel11, toolStripButton2, toolStripButton3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(408, 1405);
@@ -85,12 +88,12 @@
             toolStripLabel2.Size = new Size(403, 36);
             toolStripLabel2.Text = "Введите градусы поворота";
             // 
-            // toolStripTextBox1
+            // degreeTextBox
             // 
-            toolStripTextBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripTextBox1.Name = "toolStripTextBox1";
-            toolStripTextBox1.Size = new Size(399, 44);
-            toolStripTextBox1.Text = "0";
+            degreeTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            degreeTextBox.Name = "degreeTextBox";
+            degreeTextBox.Size = new Size(399, 44);
+            degreeTextBox.Text = "0";
             // 
             // toolStripComboBox1
             // 
@@ -114,12 +117,12 @@
             toolStripLabel4.Text = "dx:";
             toolStripLabel4.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // toolStripTextBox2
+            // dxTextBox
             // 
-            toolStripTextBox2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripTextBox2.Name = "toolStripTextBox2";
-            toolStripTextBox2.Size = new Size(399, 44);
-            toolStripTextBox2.Text = "0";
+            dxTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dxTextBox.Name = "dxTextBox";
+            dxTextBox.Size = new Size(399, 44);
+            dxTextBox.Text = "0";
             // 
             // toolStripLabel5
             // 
@@ -129,12 +132,12 @@
             toolStripLabel5.Text = "dy:";
             toolStripLabel5.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // toolStripTextBox3
+            // dyTextBox
             // 
-            toolStripTextBox3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripTextBox3.Name = "toolStripTextBox3";
-            toolStripTextBox3.Size = new Size(399, 44);
-            toolStripTextBox3.Text = "0";
+            dyTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dyTextBox.Name = "dyTextBox";
+            dyTextBox.Size = new Size(399, 44);
+            dyTextBox.Text = "0";
             // 
             // toolStripLabel6
             // 
@@ -203,19 +206,50 @@
             toolStripTextBox7.Size = new Size(399, 44);
             toolStripTextBox7.Text = "1";
             // 
-            // toolStripButton1
+            // drawButton
             // 
-            toolStripButton1.AutoSize = false;
-            toolStripButton1.BackColor = Color.FromArgb(192, 192, 255);
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton1.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Overflow = ToolStripItemOverflow.Never;
-            toolStripButton1.RightToLeft = RightToLeft.Yes;
-            toolStripButton1.Size = new Size(403, 100);
-            toolStripButton1.Text = "Отрисовать";
-            toolStripButton1.TextImageRelation = TextImageRelation.TextAboveImage;
+            drawButton.AutoSize = false;
+            drawButton.BackColor = Color.FromArgb(192, 192, 255);
+            drawButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            drawButton.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
+            drawButton.ImageTransparentColor = Color.Magenta;
+            drawButton.Name = "drawButton";
+            drawButton.Overflow = ToolStripItemOverflow.Never;
+            drawButton.RightToLeft = RightToLeft.Yes;
+            drawButton.Size = new Size(403, 100);
+            drawButton.Text = "Отрисовать";
+            drawButton.TextImageRelation = TextImageRelation.TextAboveImage;
+            drawButton.Click += drawButton_Click;
+            // 
+            // toolStripButton4
+            // 
+            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton4.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripButton4.Image = (Image)resources.GetObject("toolStripButton4.Image");
+            toolStripButton4.ImageTransparentColor = Color.Magenta;
+            toolStripButton4.Name = "toolStripButton4";
+            toolStripButton4.Size = new Size(403, 46);
+            toolStripButton4.Text = "Сброс";
+            // 
+            // toolStripButton5
+            // 
+            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton5.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
+            toolStripButton5.ImageTransparentColor = Color.Magenta;
+            toolStripButton5.Name = "toolStripButton5";
+            toolStripButton5.Size = new Size(403, 46);
+            toolStripButton5.Text = "Undo";
+            // 
+            // toolStripButton6
+            // 
+            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton6.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
+            toolStripButton6.ImageTransparentColor = Color.Magenta;
+            toolStripButton6.Name = "toolStripButton6";
+            toolStripButton6.Size = new Size(403, 46);
+            toolStripButton6.Text = "Redo";
             // 
             // toolStripSeparator1
             // 
@@ -264,6 +298,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2177, 1405);
             Controls.Add(toolStrip1);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             Paint += Form1_Paint;
@@ -279,13 +314,13 @@
         private ToolStripLabel toolStripLabel2;
         private ContextMenuStrip contextMenuStrip1;
         private ContextMenuStrip contextMenuStrip2;
-        private ToolStripTextBox toolStripTextBox1;
+        private ToolStripTextBox degreeTextBox;
         private ToolStripComboBox toolStripComboBox1;
         private ToolStripLabel toolStripLabel3;
         private ToolStripLabel toolStripLabel4;
-        private ToolStripTextBox toolStripTextBox2;
+        private ToolStripTextBox dxTextBox;
         private ToolStripLabel toolStripLabel5;
-        private ToolStripTextBox toolStripTextBox3;
+        private ToolStripTextBox dyTextBox;
         private ToolStripLabel toolStripLabel6;
         private ToolStripLabel toolStripLabel8;
         private ToolStripTextBox toolStripTextBox4;
@@ -295,10 +330,13 @@
         private ToolStripTextBox toolStripTextBox6;
         private ToolStripLabel toolStripLabel7;
         private ToolStripTextBox toolStripTextBox7;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton drawButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel toolStripLabel11;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
+        private ToolStripButton toolStripButton4;
+        private ToolStripButton toolStripButton5;
+        private ToolStripButton toolStripButton6;
     }
 }
