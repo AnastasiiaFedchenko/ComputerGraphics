@@ -6,6 +6,8 @@ namespace lab_02
     public partial class Form1 : Form
     {
         List<Shape> shapes = new List<Shape>();
+        List<Change> changes = new List<Change>();
+        int pointer = -1;
         Point A, B, C, D, E;
         int h, w1, h1, w2, h2, r1, r2, r3;
         public Form1()
@@ -67,7 +69,13 @@ namespace lab_02
             {
                 i.draw(g);
             }
-            g.DrawEllipse(new Pen(Color.Black, 5), (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width + w1/2 - 5, this.ClientSize.Height / 2 + h1/2 - 5, 5, 5);
+            if (pointer >= 0)
+            {
+                if (changes[pointer].Kx != 1 || changes[pointer].Ky != 1)
+                    g.DrawEllipse(new Pen(Color.Red, 5), changes[pointer].Ox2 - 5, changes[pointer].Oy2 - 5, 5, 5);
+                if (changes[pointer].Degrees != 0)
+                    g.DrawEllipse(new Pen(Color.Blue, 5), changes[pointer].Ox1 - 5, changes[pointer].Oy1 - 5, 5, 5);
+            }
         }
 
         private void drawButton_Click(object sender, EventArgs e)
@@ -77,7 +85,7 @@ namespace lab_02
             int dx, dy; // offsets for x and y
             int Ox2, Oy2; // center of the scaling
             double kx, ky; // scaling factors
-            if (int.TryParse(Ox1TextBox.Text, out Ox1) == false) 
+            if (int.TryParse(Ox1TextBox.Text, out Ox1) == false)
             {
                 MessageBox.Show("Абсцисса центра вращения должна быть целым числом");
                 return;
@@ -87,7 +95,7 @@ namespace lab_02
                 MessageBox.Show("Ордината центра вращения должна быть целым числом");
                 return;
             }
-            if (double.TryParse(degreeTextBox.Text, out degrees) == false) 
+            if (double.TryParse(degreeTextBox.Text, out degrees) == false)
             {
                 MessageBox.Show("Угол поворота должен быть вещественным числом");
                 return;
@@ -103,7 +111,7 @@ namespace lab_02
                 MessageBox.Show("dy должно быть целым числом");
                 return;
             }
-            
+
             if (int.TryParse(Ox2TextBox.Text, out Ox2) == false)
             {
                 MessageBox.Show("Абсцисса центра масштабирования должна быть целым числом");
@@ -114,7 +122,7 @@ namespace lab_02
                 MessageBox.Show("Ордината центра масштабирования должна быть целым числом");
                 return;
             }
-            if (double.TryParse(kxTextBox.Text,out kx) == false) 
+            if (double.TryParse(kxTextBox.Text, out kx) == false)
             {
                 MessageBox.Show("Коэффициент масштабирования по x должен быть вещественным числом");
                 return;
@@ -126,15 +134,24 @@ namespace lab_02
             }
 
             Ox1 = Ox1 + (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width;
-            Oy1 = Oy1 + this.ClientSize.Height / 2;
+            Oy1 = -Oy1 + this.ClientSize.Height / 2;
             Ox2 = Ox2 + (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width;
-            Oy2 = Oy2 + this.ClientSize.Height / 2;
+            Oy2 = -Oy2 + this.ClientSize.Height / 2;
             degrees = (Math.PI / 180) * degrees;
-
+            Change new_change = new Change(Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
             for (int i = 0; i < shapes.Count(); i++)
             {
-                shapes[i].renew(Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+                shapes[i].renew(new_change);
             }
+            if (pointer < (changes.Count - 1)) 
+            {
+                for (int i = changes.Count - 1; i > pointer; i--)
+                    changes.RemoveAt(i);
+                RedoButton.Enabled = false;
+            }
+            changes.Add(new_change);
+            pointer++;
+            UndoButton.Enabled = true;
             this.Invalidate();
         }
 
@@ -150,7 +167,52 @@ namespace lab_02
             Oy2TextBox.Text = "0";
             kxTextBox.Text = "1";
             kyTextBox.Text = "1";
+            changes.Clear();
+            pointer = -1;
+            UndoButton.Enabled = false;
+            RedoButton.Enabled = false;
 
+            this.Invalidate();
+        }
+
+        private void UndoButton_Click(object sender, EventArgs e)
+        {
+            if (changes.Count > 0 && pointer >= 0)
+            {
+                Change reverse = (Change)changes[pointer].Clone();
+                reverse.Degrees = -reverse.Degrees;
+                reverse.Dx = -reverse.Dx;
+                reverse.Dy = -reverse.Dy;
+                reverse.Kx = 1 / reverse.Kx;
+                reverse.Ky = 1 / reverse.Ky;
+                for (int i = 0; i < shapes.Count(); i++)
+                {
+                    shapes[i].renew(reverse);
+                }
+                pointer--;
+                if (pointer == -1)
+                    UndoButton.Enabled = false;
+                if (pointer < (changes.Count() - 1))
+                    RedoButton.Enabled = true;
+                else 
+                    RedoButton.Enabled= false;
+                this.Invalidate();
+            }
+        }
+
+        private void RedoButton_Click(object sender, EventArgs e)
+        {
+            if (changes.Count > 0 && (pointer + 1) < changes.Count) 
+            {
+                pointer++;
+                for (int i = 0; i < shapes.Count(); i++)
+                {
+                    shapes[i].renew(changes[pointer]);
+                }
+                if (pointer >= (changes.Count - 1))
+                    RedoButton.Enabled = false;
+                UndoButton.Enabled = true;
+            }
             this.Invalidate();
         }
     }

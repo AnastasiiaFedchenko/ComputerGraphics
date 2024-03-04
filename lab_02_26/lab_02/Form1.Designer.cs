@@ -54,8 +54,8 @@
             kyTextBox = new ToolStripTextBox();
             drawButton = new ToolStripButton();
             toolStripButton4 = new ToolStripButton();
-            toolStripButton5 = new ToolStripButton();
-            toolStripButton6 = new ToolStripButton();
+            UndoButton = new ToolStripButton();
+            RedoButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             contextMenuStrip1 = new ContextMenuStrip(components);
             contextMenuStrip2 = new ContextMenuStrip(components);
@@ -66,7 +66,7 @@
             // 
             toolStrip1.Dock = DockStyle.Left;
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel12, Ox1TextBox, toolStripLabel13, Oy1TextBox, toolStripLabel2, degreeTextBox, toolStripLabel3, toolStripLabel4, dxTextBox, toolStripLabel5, dyTextBox, toolStripLabel6, toolStripLabel8, Ox2TextBox, toolStripLabel9, Oy2TextBox, toolStripLabel10, kxTextBox, toolStripLabel7, kyTextBox, drawButton, toolStripButton4, toolStripButton5, toolStripButton6, toolStripSeparator1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel12, Ox1TextBox, toolStripLabel13, Oy1TextBox, toolStripLabel2, degreeTextBox, toolStripLabel3, toolStripLabel4, dxTextBox, toolStripLabel5, dyTextBox, toolStripLabel6, toolStripLabel8, Ox2TextBox, toolStripLabel9, Oy2TextBox, toolStripLabel10, kxTextBox, toolStripLabel7, kyTextBox, drawButton, toolStripButton4, UndoButton, RedoButton, toolStripSeparator1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(408, 1405);
@@ -255,25 +255,29 @@
             toolStripButton4.Text = "Сброс";
             toolStripButton4.Click += toolStripButton4_Click;
             // 
-            // toolStripButton5
+            // UndoButton
             // 
-            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton5.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
-            toolStripButton5.ImageTransparentColor = Color.Magenta;
-            toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new Size(403, 46);
-            toolStripButton5.Text = "Undo";
+            UndoButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            UndoButton.Enabled = false;
+            UndoButton.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            UndoButton.Image = (Image)resources.GetObject("UndoButton.Image");
+            UndoButton.ImageTransparentColor = Color.Magenta;
+            UndoButton.Name = "UndoButton";
+            UndoButton.Size = new Size(403, 46);
+            UndoButton.Text = "Undo";
+            UndoButton.Click += UndoButton_Click;
             // 
-            // toolStripButton6
+            // RedoButton
             // 
-            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton6.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
-            toolStripButton6.ImageTransparentColor = Color.Magenta;
-            toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(403, 46);
-            toolStripButton6.Text = "Redo";
+            RedoButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            RedoButton.Enabled = false;
+            RedoButton.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            RedoButton.Image = (Image)resources.GetObject("RedoButton.Image");
+            RedoButton.ImageTransparentColor = Color.Magenta;
+            RedoButton.Name = "RedoButton";
+            RedoButton.Size = new Size(403, 46);
+            RedoButton.Text = "Redo";
+            RedoButton.Click += RedoButton_Click;
             // 
             // toolStripSeparator1
             // 
@@ -332,8 +336,8 @@
         private ToolStripButton drawButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton4;
-        private ToolStripButton toolStripButton5;
-        private ToolStripButton toolStripButton6;
+        private ToolStripButton UndoButton;
+        private ToolStripButton RedoButton;
         private ToolStripLabel toolStripLabel12;
         private ToolStripTextBox Ox1TextBox;
         private ToolStripLabel toolStripLabel13;

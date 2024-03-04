@@ -15,18 +15,18 @@ namespace lab_02
 
         public abstract void draw(Graphics g);
 
-        private protected void renew_point(ref Point p, int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky) 
+        private protected void renew_point(ref Point p, Change ch) 
         {
             Point new_p = new Point(p.X, p.Y);
-            new_p.X = (int)(Ox1 + (p.X - Ox1) * Math.Cos(degrees) + (p.Y - Oy1) * Math.Sin(degrees));
-            new_p.Y = (int)(Oy1 - (p.X - Ox1) * Math.Sin(degrees) + (p.Y - Oy1) * Math.Cos(degrees));
-            new_p.X += dx;
-            new_p.Y -= dy;
-            new_p.X = (int)(kx * new_p.X + Ox2 * (1 - kx));
-            new_p.Y = (int)(ky * new_p.Y + Oy2 * (1 - ky));
+            new_p.X = (int)(ch.Ox1 + (p.X - ch.Ox1) * Math.Cos(ch.Degrees) + (p.Y - ch.Oy1) * Math.Sin(ch.Degrees));
+            new_p.Y = (int)(ch.Oy1 - (p.X - ch.Ox1) * Math.Sin(ch.Degrees) + (p.Y - ch.Oy1) * Math.Cos(ch.Degrees));
+            new_p.X += ch.Dx;
+            new_p.Y -= ch.Dy;
+            new_p.X = (int)(ch.Ox2 + ch.Kx * (new_p.X - ch.Ox2));
+            new_p.Y = (int)(ch.Oy2 + ch.Ky * (new_p.Y - ch.Oy2));
             p = new_p;
         }
-        public abstract void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky);
+        public abstract void renew(Change change);
     }
 
     public class Polygon : Shape
@@ -52,11 +52,11 @@ namespace lab_02
             g.FillPolygon(brush, points);
         }
 
-        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
+        public override void renew(Change change)
         {
-            for (int i = 0; i < points.Count(); i++) 
-            {
-                renew_point(ref points[i], Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            for (int i = 0; i < points.Count(); i++)
+            { 
+                renew_point(ref points[i], change);
             }
         }
     }
@@ -95,11 +95,11 @@ namespace lab_02
             Brush brush = new SolidBrush(this.color);
             g.FillPolygon(brush, CreatePointArr());
         }
-        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
+        public override void renew(Change change)
         {
-            renew_point(ref O, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
-            renew_point(ref A, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
-            renew_point(ref B, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref O, change);
+            renew_point(ref A, change);
+            renew_point(ref B, change);
         }
     }
 
@@ -116,11 +116,11 @@ namespace lab_02
             B = new Point(O.X, O.Y - b);
             this.color = color;
         }
-        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
+        public override void renew(Change change)
         {
-            renew_point(ref O, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
-            renew_point(ref A, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
-            renew_point(ref B, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref O, change);
+            renew_point(ref A, change);
+            renew_point(ref B, change);
         }
     }
 
@@ -134,9 +134,6 @@ namespace lab_02
 
             g.DrawLine(pen, A, new Point(O.X + (O.X - A.X), O.Y - (A.Y - O.Y)));
             g.DrawLine(pen, B, new Point(O.X + (O.X - B.X), O.Y - (B.Y - O.Y)));
-            //g.DrawEllipse(new Pen(Color.Black, 5), O.X - 5, O.Y - 5, 5, 5);
-            //g.DrawEllipse(new Pen(Color.Black, 5), A.X - 5, A.Y - 5, 5, 5);
-            //g.DrawEllipse(new Pen(Color.Black, 5), B.X - 5, B.Y - 5, 5, 5);
         }
     }
     public class Rhomb: Cross_Rhomb 
