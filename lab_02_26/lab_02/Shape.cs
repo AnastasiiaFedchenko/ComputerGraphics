@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace lab_02
 {
@@ -12,7 +14,19 @@ namespace lab_02
         public Shape() { }
 
         public abstract void draw(Graphics g);
-        public abstract void renew(int dx, int dy);
+
+        private protected void renew_point(ref Point p, int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky) 
+        {
+            Point new_p = new Point(p.X, p.Y);
+            new_p.X = (int)(Ox1 + (p.X - Ox1) * Math.Cos(degrees) + (p.Y - Oy1) * Math.Sin(degrees));
+            new_p.Y = (int)(Oy1 - (p.X - Ox1) * Math.Sin(degrees) + (p.Y - Oy1) * Math.Cos(degrees));
+            new_p.X += dx;
+            new_p.Y -= dy;
+            new_p.X = (int)(kx * new_p.X + Ox2 * (1 - kx));
+            new_p.Y = (int)(ky * new_p.Y + Oy2 * (1 - ky));
+            p = new_p;
+        }
+        public abstract void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky);
     }
 
     public class Polygon : Shape
@@ -38,12 +52,11 @@ namespace lab_02
             g.FillPolygon(brush, points);
         }
 
-        public override void renew(int dx, int dy)
+        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
         {
             for (int i = 0; i < points.Count(); i++) 
             {
-                points[i].X += dx;
-                points[i].Y -= dy;
+                renew_point(ref points[i], Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
             }
         }
     }
@@ -82,68 +95,60 @@ namespace lab_02
             Brush brush = new SolidBrush(this.color);
             g.FillPolygon(brush, CreatePointArr());
         }
-        public override void renew(int dx, int dy)
+        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
         {
-            O.X += dx;
-            O.Y -= dy;
-            A.X += dx;
-            A.Y -= dy;
-            B.X += dx;
-            B.Y -= dy;
+            renew_point(ref O, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref A, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref B, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
         }
     }
 
-    public class Cross: Shape
+    public abstract class Cross_Rhomb : Shape
     {
-        Point O;
-        int a;
-        int b;
-        Color color;
-        public Cross(Point p, int a, int b, Color color)
+        protected Point O;
+        protected Point A;
+        protected Point B;
+        protected Color color;
+        public Cross_Rhomb(Point p, int a, int b, Color color)
         {
             O = p;
-            this.a = a; 
-            this.b = b;
+            A = new Point(O.X - a, O.Y);
+            B = new Point(O.X, O.Y - b);
             this.color = color;
         }
+        public override void renew(int Ox1, int Oy1, double degrees, int dx, int dy, int Ox2, int Oy2, double kx, double ky)
+        {
+            renew_point(ref O, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref A, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+            renew_point(ref B, Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
+        }
+    }
+
+    public class Cross: Cross_Rhomb
+    {
+        public Cross(Point p, int a, int b, Color color) : base(p, a, b, color) {}
 
         public override void draw(Graphics g) 
         {
             Pen pen = new Pen(this.color, 5);
-            g.DrawLine(pen, new Point(O.X - a, O.Y), new Point(O.X + a, O.Y));
-            g.DrawLine(pen, new Point(O.X, O.Y - b), new Point(O.X, O.Y + b));
-        }
-        public override void renew(int dx, int dy)
-        {
-            O.X += dx;
-            O.Y -= dy;
+
+            g.DrawLine(pen, A, new Point(O.X + (O.X - A.X), O.Y - (A.Y - O.Y)));
+            g.DrawLine(pen, B, new Point(O.X + (O.X - B.X), O.Y - (B.Y - O.Y)));
+            //g.DrawEllipse(new Pen(Color.Black, 5), O.X - 5, O.Y - 5, 5, 5);
+            //g.DrawEllipse(new Pen(Color.Black, 5), A.X - 5, A.Y - 5, 5, 5);
+            //g.DrawEllipse(new Pen(Color.Black, 5), B.X - 5, B.Y - 5, 5, 5);
         }
     }
-    public class Rhomb: Shape 
+    public class Rhomb: Cross_Rhomb 
     {
-        Point O;
-        int a;
-        int b;
-        Color color;
-        public Rhomb(Point p, int a, int b, Color color)
-        {
-            O = p;
-            this.a = a;
-            this.b = b;
-            this.color = color;
-        }
+        public Rhomb(Point p, int a, int b, Color color) : base(p, a, b, color) { }
         public override void draw(Graphics g)
         {
             Pen pen = new Pen(this.color, 5);
-            g.DrawLine(pen, new Point(O.X - a, O.Y), new Point(O.X, O.Y  - b));
-            g.DrawLine(pen, new Point(O.X, O.Y - b), new Point(O.X + a, O.Y));
-            g.DrawLine(pen, new Point(O.X + a, O.Y), new Point(O.X, O.Y + b));
-            g.DrawLine(pen, new Point(O.X, O.Y + b), new Point(O.X - a, O.Y));
-        }
-        public override void renew(int dx, int dy)
-        {
-            O.X += dx;
-            O.Y -= dy;
+            g.DrawLine(pen, A, B);
+            g.DrawLine(pen, B, new Point(O.X + (O.X - A.X), O.Y - (A.Y - O.Y)));
+            g.DrawLine(pen, new Point(O.X + (O.X - A.X), O.Y - (A.Y - O.Y)), new Point(O.X + (O.X - B.X), O.Y - (B.Y - O.Y)));
+            g.DrawLine(pen, new Point(O.X + (O.X - B.X), O.Y - (B.Y - O.Y)), A);
         }
     }
 }

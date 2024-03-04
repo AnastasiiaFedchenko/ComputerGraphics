@@ -11,7 +11,6 @@ namespace lab_02
         public Form1()
         {
             InitializeComponent();
-            toolStripComboBox1.SelectedIndex = 0;
             toolStrip1.ImageScalingSize = new Size(40, 40);
             start_position();
             this.Invalidate();
@@ -68,12 +67,32 @@ namespace lab_02
             {
                 i.draw(g);
             }
+            g.DrawEllipse(new Pen(Color.Black, 5), (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width + w1/2 - 5, this.ClientSize.Height / 2 + h1/2 - 5, 5, 5);
         }
 
         private void drawButton_Click(object sender, EventArgs e)
         {
-            int dx;
-            int dy;
+            int Ox1, Oy1; // center of rotation
+            double degrees; // the angle of rotation
+            int dx, dy; // offsets for x and y
+            int Ox2, Oy2; // center of the scaling
+            double kx, ky; // scaling factors
+            if (int.TryParse(Ox1TextBox.Text, out Ox1) == false) 
+            {
+                MessageBox.Show("Абсцисса центра вращения должна быть целым числом");
+                return;
+            }
+            if (int.TryParse(Oy1TextBox.Text, out Oy1) == false)
+            {
+                MessageBox.Show("Ордината центра вращения должна быть целым числом");
+                return;
+            }
+            if (double.TryParse(degreeTextBox.Text, out degrees) == false) 
+            {
+                MessageBox.Show("Угол поворота должен быть вещественным числом");
+                return;
+            }
+
             if (int.TryParse(dxTextBox.Text, out dx) == false)
             {
                 MessageBox.Show("dx должно быть целым числом");
@@ -84,10 +103,54 @@ namespace lab_02
                 MessageBox.Show("dy должно быть целым числом");
                 return;
             }
+            
+            if (int.TryParse(Ox2TextBox.Text, out Ox2) == false)
+            {
+                MessageBox.Show("Абсцисса центра масштабирования должна быть целым числом");
+                return;
+            }
+            if (int.TryParse(Oy2TextBox.Text, out Oy2) == false)
+            {
+                MessageBox.Show("Ордината центра масштабирования должна быть целым числом");
+                return;
+            }
+            if (double.TryParse(kxTextBox.Text,out kx) == false) 
+            {
+                MessageBox.Show("Коэффициент масштабирования по x должен быть вещественным числом");
+                return;
+            }
+            if (double.TryParse(kyTextBox.Text, out ky) == false)
+            {
+                MessageBox.Show("Коэффициент масштабирования по y должен быть вещественным числом");
+                return;
+            }
+
+            Ox1 = Ox1 + (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width;
+            Oy1 = Oy1 + this.ClientSize.Height / 2;
+            Ox2 = Ox2 + (this.ClientSize.Width - toolStrip1.Width) / 2 + toolStrip1.Width;
+            Oy2 = Oy2 + this.ClientSize.Height / 2;
+            degrees = (Math.PI / 180) * degrees;
+
             for (int i = 0; i < shapes.Count(); i++)
             {
-                shapes[i].renew(dx, dy);
+                shapes[i].renew(Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
             }
+            this.Invalidate();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            start_position();
+            Ox1TextBox.Text = "0";
+            Oy1TextBox.Text = "0";
+            degreeTextBox.Text = "0";
+            dxTextBox.Text = "0";
+            dyTextBox.Text = "0";
+            Ox2TextBox.Text = "0";
+            Oy2TextBox.Text = "0";
+            kxTextBox.Text = "1";
+            kyTextBox.Text = "1";
+
             this.Invalidate();
         }
     }
