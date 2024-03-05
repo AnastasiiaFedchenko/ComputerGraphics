@@ -141,7 +141,7 @@ namespace lab_02
             Change new_change = new Change(Ox1, Oy1, degrees, dx, dy, Ox2, Oy2, kx, ky);
             for (int i = 0; i < shapes.Count(); i++)
             {
-                shapes[i].renew(new_change);
+                shapes[i].renew(new_change, false);
             }
             if (pointer < (changes.Count - 1)) 
             {
@@ -187,7 +187,7 @@ namespace lab_02
                 reverse.Ky = 1 / reverse.Ky;
                 for (int i = 0; i < shapes.Count(); i++)
                 {
-                    shapes[i].renew(reverse);
+                    shapes[i].renew(reverse, true);
                 }
                 pointer--;
                 if (pointer == -1)
@@ -207,7 +207,7 @@ namespace lab_02
                 pointer++;
                 for (int i = 0; i < shapes.Count(); i++)
                 {
-                    shapes[i].renew(changes[pointer]);
+                    shapes[i].renew(changes[pointer], false);
                 }
                 if (pointer >= (changes.Count - 1))
                     RedoButton.Enabled = false;

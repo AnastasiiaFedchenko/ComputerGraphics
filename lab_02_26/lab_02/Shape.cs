@@ -15,18 +15,39 @@ namespace lab_02
 
         public abstract void draw(Graphics g);
 
-        private protected void renew_point(ref Point p, Change ch) 
+        private void rotation(ref Point p, Change ch) 
         {
             Point new_p = new Point(p.X, p.Y);
             new_p.X = (int)(ch.Ox1 + (p.X - ch.Ox1) * Math.Cos(ch.Degrees) + (p.Y - ch.Oy1) * Math.Sin(ch.Degrees));
             new_p.Y = (int)(ch.Oy1 - (p.X - ch.Ox1) * Math.Sin(ch.Degrees) + (p.Y - ch.Oy1) * Math.Cos(ch.Degrees));
-            new_p.X += ch.Dx;
-            new_p.Y -= ch.Dy;
-            new_p.X = (int)(ch.Ox2 + ch.Kx * (new_p.X - ch.Ox2));
-            new_p.Y = (int)(ch.Oy2 + ch.Ky * (new_p.Y - ch.Oy2));
             p = new_p;
         }
-        public abstract void renew(Change change);
+        private void shift(ref Point p, Change ch) 
+        {
+            p.X += ch.Dx;
+            p.Y += ch.Dy;
+        }
+        private void scaling(ref Point p, Change ch) 
+        {
+            p.X = (int)(ch.Ox2 + ch.Kx * (p.X - ch.Ox2));
+            p.Y = (int)(ch.Oy2 + ch.Ky * (p.Y - ch.Oy2));
+        }
+        private protected void renew_point(ref Point p, Change ch, bool reversed) 
+        {
+            if (!reversed) 
+            {
+                rotation(ref p, ch);
+                shift(ref p, ch);
+                scaling(ref p, ch);
+            }
+            else 
+            {
+                scaling(ref p, ch);
+                shift(ref p, ch);
+                rotation(ref p, ch);
+            }
+        }
+        public abstract void renew(Change change, bool reversed);
     }
 
     public class Polygon : Shape
@@ -52,11 +73,11 @@ namespace lab_02
             g.FillPolygon(brush, points);
         }
 
-        public override void renew(Change change)
+        public override void renew(Change change, bool reversed)
         {
             for (int i = 0; i < points.Count(); i++)
             { 
-                renew_point(ref points[i], change);
+                renew_point(ref points[i], change, reversed);
             }
         }
     }
@@ -95,11 +116,11 @@ namespace lab_02
             Brush brush = new SolidBrush(this.color);
             g.FillPolygon(brush, CreatePointArr());
         }
-        public override void renew(Change change)
+        public override void renew(Change change, bool reversed)
         {
-            renew_point(ref O, change);
-            renew_point(ref A, change);
-            renew_point(ref B, change);
+            renew_point(ref O, change, reversed);
+            renew_point(ref A, change, reversed);
+            renew_point(ref B, change, reversed);
         }
     }
 
@@ -116,11 +137,11 @@ namespace lab_02
             B = new Point(O.X, O.Y - b);
             this.color = color;
         }
-        public override void renew(Change change)
+        public override void renew(Change change, bool reversed)
         {
-            renew_point(ref O, change);
-            renew_point(ref A, change);
-            renew_point(ref B, change);
+            renew_point(ref O, change, reversed);
+            renew_point(ref A, change, reversed);
+            renew_point(ref B, change, reversed);
         }
     }
 
