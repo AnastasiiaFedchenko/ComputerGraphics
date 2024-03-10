@@ -9,9 +9,6 @@ namespace lab_01
     abstract public class Change
     {
         static public Main form;
-        //public bool IsConnected;
-        //public abstract void Undo();
-        //public abstract void Redo();
     }
     public class MovePoint : Change
     {
@@ -37,16 +34,6 @@ namespace lab_01
             set { this.dy = value; }
             get { return this.dy; }
         }
-        /*public override void Undo()
-        {
-            form.tops[iPoint].X -= dx;
-            form.tops[iPoint].Y -= dy;
-        }
-        public override void Redo()
-        {
-            form.tops[iPoint].X += dx;
-            form.tops[iPoint].Y += dy;
-        }*/
     }
     public class MovePoints : Change
     {
@@ -59,15 +46,5 @@ namespace lab_01
                 this.Points.Add(Points[i]);
             }
         }
-        /*public override void Undo()
-        {
-            for (int i = 0; i < Points.Count(); i++)
-                Points[i].Undo();
-        }
-        public override void Redo()
-        {
-            for (int i = 0; i < Points.Count(); i++)
-                Points[i].Redo();
-        }*/
     }
 }

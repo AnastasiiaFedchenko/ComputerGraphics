@@ -27,7 +27,6 @@ namespace lab_01
         public List<Shape> tops = new List<Shape>();
         List<Shape> res_red = new List<Shape>();
         List<Shape> res_blue = new List<Shape>();
-        //List<Shape> res = new List<Shape>();
         bool is_drag_and_dropping;
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
         int DX, DY;
@@ -80,19 +79,19 @@ namespace lab_01
         private bool does_this_point_already_exist(Shape point)
         {
             bool result = false;
-            foreach (Shape i in tops)
+            for (int i = 0; result == false && i < tops.Count(); i++)
             {
-                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                if (Math.Abs(tops[i].X - point.X) < 0.00001 && Math.Abs(tops[i].Y - point.Y) < 0.00001)
                     result = true;
             }
-            foreach (Shape i in res_red)
+            for (int i = 0; result == false && i < res_red.Count(); i++)
             {
-                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                if (Math.Abs(res_red[i].X - point.X) < 0.00001 && Math.Abs(res_red[i].Y - point.Y) < 0.00001)
                     result = true;
             }
-            foreach (Shape i in res_blue)
+            for (int i = 0; result == false && i < res_blue.Count(); i++)
             {
-                if (Math.Abs(i.X - point.X) < 0.00001 && Math.Abs(i.Y - point.Y) < 0.00001)
+                if (Math.Abs(res_blue[i].X - point.X) < 0.00001 && Math.Abs(res_blue[i].Y - point.Y) < 0.00001)
                     result = true;
             }
             return result;
@@ -145,8 +144,6 @@ namespace lab_01
                         tops[i].DragAndDropped = true;
                         tops[i].OffsetX = to_pixels_X(tops[i]) - e.Location.X;
                         tops[i].OffsetY = to_pixels_Y(tops[i]) - e.Location.Y;
-                        //tops[i].OffsetX = (int)((tops[i].X - O.X) * Kx) + OX - e.Location.X;
-                        //tops[i].OffsetY = OY - (int)((tops[i].Y - O.Y) * Ky) - e.Location.Y;
                         DX = e.Location.X;
                         DY = e.Location.Y;
                         ThePointsDragAndDropping.Add(new MovePoint(0, 0, i));
@@ -161,7 +158,6 @@ namespace lab_01
                 {
                     Color color_now = (toolStripComboBox1.SelectedIndex == 0) ? Color.Red : Color.Blue;
                     Shape new_point = new Shape(to_original_X(e.Location.X), to_original_Y(e.Location.Y), color_now);
-                    //Shape new_point = new Shape((e.Location.X - OX) / Kx + O.X, (OY - e.Location.Y) / Ky + O.Y, color_now);
                     if (does_this_point_already_exist(new_point))
                         MessageBox.Show("“очка со схожими координатами уже существует.");
                     else
@@ -247,9 +243,6 @@ namespace lab_01
             g.DrawLine(pen,
                     new Point(to_pixels_X(A), to_pixels_Y(A)),
                     new Point(to_pixels_X(B), to_pixels_Y(B)));
-            /*g.DrawLine(pen,
-                    new Point(OX + (int)((A.X - O.X) * Kx), OY - (int)((A.Y - O.Y) * Ky)),
-                    new Point(OX + (int)((B.X - O.X) * Kx), OY - (int)((B.Y - O.Y) * Ky)));*/
         }
 
         void draw_result_of_calculation(Graphics g) 
