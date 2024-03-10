@@ -143,7 +143,7 @@ namespace lab_02
             {
                 shapes[i].renew(new_change, false);
             }
-            if (pointer < (changes.Count - 1)) 
+            if (pointer < (changes.Count - 1))
             {
                 for (int i = changes.Count - 1; i > pointer; i--)
                     changes.RemoveAt(i);
@@ -194,15 +194,15 @@ namespace lab_02
                     UndoButton.Enabled = false;
                 if (pointer < (changes.Count() - 1))
                     RedoButton.Enabled = true;
-                else 
-                    RedoButton.Enabled= false;
+                else
+                    RedoButton.Enabled = false;
                 this.Invalidate();
             }
         }
 
         private void RedoButton_Click(object sender, EventArgs e)
         {
-            if (changes.Count > 0 && (pointer + 1) < changes.Count) 
+            if (changes.Count > 0 && (pointer + 1) < changes.Count)
             {
                 pointer++;
                 for (int i = 0; i < shapes.Count(); i++)
@@ -215,5 +215,6 @@ namespace lab_02
             }
             this.Invalidate();
         }
+
     }
 }

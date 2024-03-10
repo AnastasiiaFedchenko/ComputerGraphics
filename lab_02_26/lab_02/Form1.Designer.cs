@@ -302,9 +302,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2177, 1405);
             Controls.Add(toolStrip1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Лабораторная работа №2";
             Paint += Form1_Paint;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
