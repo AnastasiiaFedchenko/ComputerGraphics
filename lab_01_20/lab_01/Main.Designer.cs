@@ -30,16 +30,16 @@
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             menuStrip1 = new MenuStrip();
-            информацияToolStripMenuItem = new ToolStripMenuItem();
-            оПрограммеToolStripMenuItem = new ToolStripMenuItem();
-            обАвтореToolStripMenuItem = new ToolStripMenuItem();
-            добавитьТочкуВПервоеМножествоToolStripMenuItem = new ToolStripMenuItem();
-            toolStripComboBox1 = new ToolStripComboBox();
-            посчитатьToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem2 = new ToolStripMenuItem();
-            toolStripMenuItem3 = new ToolStripMenuItem();
-            autoFocusToolStripMenuItem = new ToolStripMenuItem();
-            сбросToolStripMenuItem = new ToolStripMenuItem();
+            InformationToolStripMenuItem = new ToolStripMenuItem();
+            AboutProgramToolStripMenuItem = new ToolStripMenuItem();
+            AboutAuthorToolStripMenuItem = new ToolStripMenuItem();
+            AddPointToolStripMenuItem = new ToolStripMenuItem();
+            SetComboBox = new ToolStripComboBox();
+            CalculateToolStripMenuItem = new ToolStripMenuItem();
+            PlusStripMenuItem = new ToolStripMenuItem();
+            MinusStripMenuItem = new ToolStripMenuItem();
+            AutoFocusToolStripMenuItem = new ToolStripMenuItem();
+            ClearToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -51,98 +51,98 @@
             // 
             menuStrip1.BackColor = SystemColors.GradientInactiveCaption;
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { информацияToolStripMenuItem, добавитьТочкуВПервоеМножествоToolStripMenuItem, toolStripComboBox1, посчитатьToolStripMenuItem, toolStripMenuItem2, toolStripMenuItem3, autoFocusToolStripMenuItem, сбросToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { InformationToolStripMenuItem, AddPointToolStripMenuItem, SetComboBox, CalculateToolStripMenuItem, PlusStripMenuItem, MinusStripMenuItem, AutoFocusToolStripMenuItem, ClearToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1470, 60);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // информацияToolStripMenuItem
+            // InformationToolStripMenuItem
             // 
-            информацияToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { оПрограммеToolStripMenuItem, обАвтореToolStripMenuItem });
-            информацияToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-            информацияToolStripMenuItem.Padding = new Padding(8);
-            информацияToolStripMenuItem.Size = new Size(227, 56);
-            информацияToolStripMenuItem.Text = "Информация";
+            InformationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AboutProgramToolStripMenuItem, AboutAuthorToolStripMenuItem });
+            InformationToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            InformationToolStripMenuItem.Name = "InformationToolStripMenuItem";
+            InformationToolStripMenuItem.Padding = new Padding(8);
+            InformationToolStripMenuItem.Size = new Size(227, 56);
+            InformationToolStripMenuItem.Text = "Информация";
             // 
-            // оПрограммеToolStripMenuItem
+            // AboutProgramToolStripMenuItem
             // 
-            оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(359, 44);
-            оПрограммеToolStripMenuItem.Text = "О программе";
-            оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
+            AboutProgramToolStripMenuItem.Name = "AboutProgramToolStripMenuItem";
+            AboutProgramToolStripMenuItem.Size = new Size(341, 44);
+            AboutProgramToolStripMenuItem.Text = "О программе";
+            AboutProgramToolStripMenuItem.Click += AboutProgramToolStripMenuItem_Click;
             // 
-            // обАвтореToolStripMenuItem
+            // AboutAuthorToolStripMenuItem
             // 
-            обАвтореToolStripMenuItem.Name = "обАвтореToolStripMenuItem";
-            обАвтореToolStripMenuItem.Size = new Size(359, 44);
-            обАвтореToolStripMenuItem.Text = "Об авторе";
-            обАвтореToolStripMenuItem.Click += обАвтореToolStripMenuItem_Click;
+            AboutAuthorToolStripMenuItem.Name = "AboutAuthorToolStripMenuItem";
+            AboutAuthorToolStripMenuItem.Size = new Size(341, 44);
+            AboutAuthorToolStripMenuItem.Text = "Об авторе";
+            AboutAuthorToolStripMenuItem.Click += AboutAuthorToolStripMenuItem_Click;
             // 
-            // добавитьТочкуВПервоеМножествоToolStripMenuItem
+            // AddPointToolStripMenuItem
             // 
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Name = "добавитьТочкуВПервоеМножествоToolStripMenuItem";
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Padding = new Padding(8);
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Size = new Size(259, 56);
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Text = "Добавить точку";
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.TextDirection = ToolStripTextDirection.Horizontal;
-            добавитьТочкуВПервоеМножествоToolStripMenuItem.Click += добавитьТочкуВПервоеМножествоToolStripMenuItem_Click;
+            AddPointToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            AddPointToolStripMenuItem.Name = "AddPointToolStripMenuItem";
+            AddPointToolStripMenuItem.Padding = new Padding(8);
+            AddPointToolStripMenuItem.Size = new Size(259, 56);
+            AddPointToolStripMenuItem.Text = "Добавить точку";
+            AddPointToolStripMenuItem.TextDirection = ToolStripTextDirection.Horizontal;
+            AddPointToolStripMenuItem.Click += AddPointToolStripMenuItem_Click;
             // 
-            // toolStripComboBox1
+            // SetComboBox
             // 
-            toolStripComboBox1.BackColor = SystemColors.Window;
-            toolStripComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            toolStripComboBox1.DropDownWidth = 121;
-            toolStripComboBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripComboBox1.ForeColor = Color.Black;
-            toolStripComboBox1.Items.AddRange(new object[] { "1-ое множество", "2-ое множество" });
-            toolStripComboBox1.Name = "toolStripComboBox1";
-            toolStripComboBox1.RightToLeft = RightToLeft.No;
-            toolStripComboBox1.Size = new Size(320, 56);
-            toolStripComboBox1.SelectedIndexChanged += toolStripComboBox1_SelectedIndexChanged;
+            SetComboBox.BackColor = SystemColors.Window;
+            SetComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SetComboBox.DropDownWidth = 121;
+            SetComboBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            SetComboBox.ForeColor = Color.Black;
+            SetComboBox.Items.AddRange(new object[] { "1-ое множество", "2-ое множество" });
+            SetComboBox.Name = "SetComboBox";
+            SetComboBox.RightToLeft = RightToLeft.No;
+            SetComboBox.Size = new Size(320, 56);
+            SetComboBox.SelectedIndexChanged += SetComboBox_SelectedIndexChanged;
             // 
-            // посчитатьToolStripMenuItem
+            // CalculateToolStripMenuItem
             // 
-            посчитатьToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            посчитатьToolStripMenuItem.Name = "посчитатьToolStripMenuItem";
-            посчитатьToolStripMenuItem.Size = new Size(189, 56);
-            посчитатьToolStripMenuItem.Text = "Посчитать";
-            посчитатьToolStripMenuItem.Click += посчитатьToolStripMenuItem_Click;
+            CalculateToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            CalculateToolStripMenuItem.Name = "CalculateToolStripMenuItem";
+            CalculateToolStripMenuItem.Size = new Size(189, 56);
+            CalculateToolStripMenuItem.Text = "Посчитать";
+            CalculateToolStripMenuItem.Click += CalculateToolStripMenuItem_Click;
             // 
-            // toolStripMenuItem2
+            // PlusStripMenuItem
             // 
-            toolStripMenuItem2.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(60, 56);
-            toolStripMenuItem2.Text = "+";
-            toolStripMenuItem2.Click += toolStripMenuItem2_Click;
+            PlusStripMenuItem.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            PlusStripMenuItem.Name = "PlusStripMenuItem";
+            PlusStripMenuItem.Size = new Size(60, 56);
+            PlusStripMenuItem.Text = "+";
+            PlusStripMenuItem.Click += PlusStripMenuItem_Click;
             // 
-            // toolStripMenuItem3
+            // MinusStripMenuItem
             // 
-            toolStripMenuItem3.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(50, 56);
-            toolStripMenuItem3.Text = "-";
-            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
+            MinusStripMenuItem.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            MinusStripMenuItem.Name = "MinusStripMenuItem";
+            MinusStripMenuItem.Size = new Size(50, 56);
+            MinusStripMenuItem.Text = "-";
+            MinusStripMenuItem.Click += MinusStripMenuItem_Click;
             // 
-            // autoFocusToolStripMenuItem
+            // AutoFocusToolStripMenuItem
             // 
-            autoFocusToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            autoFocusToolStripMenuItem.Name = "autoFocusToolStripMenuItem";
-            autoFocusToolStripMenuItem.Size = new Size(187, 56);
-            autoFocusToolStripMenuItem.Text = "AutoFocus";
-            autoFocusToolStripMenuItem.Click += autoFocusToolStripMenuItem_Click;
+            AutoFocusToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            AutoFocusToolStripMenuItem.Name = "AutoFocusToolStripMenuItem";
+            AutoFocusToolStripMenuItem.Size = new Size(187, 56);
+            AutoFocusToolStripMenuItem.Text = "AutoFocus";
+            AutoFocusToolStripMenuItem.Click += AutoFocusToolStripMenuItem_Click;
             // 
-            // сбросToolStripMenuItem
+            // ClearToolStripMenuItem
             // 
-            сбросToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            сбросToolStripMenuItem.Name = "сбросToolStripMenuItem";
-            сбросToolStripMenuItem.Size = new Size(125, 56);
-            сбросToolStripMenuItem.Text = "Сброс";
-            сбросToolStripMenuItem.Click += сбросToolStripMenuItem_Click;
+            ClearToolStripMenuItem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ClearToolStripMenuItem.Name = "ClearToolStripMenuItem";
+            ClearToolStripMenuItem.Size = new Size(125, 56);
+            ClearToolStripMenuItem.Text = "Сброс";
+            ClearToolStripMenuItem.Click += ClearToolStripMenuItem_Click;
             // 
             // label1
             // 
@@ -210,19 +210,19 @@
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem информацияToolStripMenuItem;
-        private ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private ToolStripMenuItem обАвтореToolStripMenuItem;
-        private ToolStripMenuItem добавитьТочкуВПервоеМножествоToolStripMenuItem;
-        private ToolStripComboBox toolStripComboBox1;
-        private ToolStripMenuItem посчитатьToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem InformationToolStripMenuItem;
+        private ToolStripMenuItem AboutProgramToolStripMenuItem;
+        private ToolStripMenuItem AboutAuthorToolStripMenuItem;
+        private ToolStripMenuItem AddPointToolStripMenuItem;
+        private ToolStripComboBox SetComboBox;
+        private ToolStripMenuItem CalculateToolStripMenuItem;
+        private ToolStripMenuItem PlusStripMenuItem;
+        private ToolStripMenuItem MinusStripMenuItem;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private ToolStripMenuItem autoFocusToolStripMenuItem;
-        private ToolStripMenuItem сбросToolStripMenuItem;
+        private ToolStripMenuItem AutoFocusToolStripMenuItem;
+        private ToolStripMenuItem ClearToolStripMenuItem;
     }
 }
