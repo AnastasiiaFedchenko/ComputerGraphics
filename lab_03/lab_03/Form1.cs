@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Net.Configuration;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace lab_03
 {
@@ -24,12 +17,12 @@ namespace lab_03
 
         private void LineRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (LineRadioButton.Checked) 
+            if (LineRadioButton.Checked)
             {
                 XsTextBox.Enabled = true;
                 YsTextBox.Enabled = true;
                 XfTextBox.Enabled = true;
-                YfTextBox.Enabled = true;  
+                YfTextBox.Enabled = true;
                 XsLabel.Visible = true;
                 YsLabel.Visible = true;
                 XfLabel.Visible = true;
@@ -49,7 +42,7 @@ namespace lab_03
 
         private void SpectrumRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (SpectrumRadioButton.Checked) 
+            if (SpectrumRadioButton.Checked)
             {
                 XsTextBox.Enabled = false;
                 YsTextBox.Enabled = false;
@@ -132,7 +125,7 @@ namespace lab_03
                 int x, y;
                 spectrum = new List<Line>();
                 Line l;
-                for (double d = 0; d < 360; d += degree) 
+                for (double d = 0; d < 360; d += degree)
                 {
                     x = (int)(Math.Sin((Math.PI / 180) * d) * length);
                     y = (int)(Math.Cos((Math.PI / 180) * d) * length);
@@ -154,7 +147,7 @@ namespace lab_03
                     spectrum.Add(l);
                 }
             }
-            
+
             this.Invalidate();
         }
 
@@ -172,7 +165,7 @@ namespace lab_03
                 else
                     line.draw(g, offset_x, offset_y, k);
             }
-            else if (SpectrumRadioButton.Checked && spectrum != null) 
+            else if (SpectrumRadioButton.Checked && spectrum != null)
             {
                 Graphics g = e.Graphics;
                 int offset_x = (this.ClientSize.Width - groupBox1.Width) / 2 + groupBox1.Width;
@@ -237,7 +230,7 @@ namespace lab_03
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void CompareGradationToolStripMenuItem_Click(object sender, EventArgs e)

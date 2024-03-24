@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -24,9 +19,9 @@ namespace lab_03
         {
             int n = 1000;
             Random rnd = new Random();
-            List <Line> lines = new List<Line>();
+            List<Line> lines = new List<Line>();
             for (int i = 0; i < n; i++)
-                lines.Add(new Line(rnd.Next(-500, 500), rnd.Next(-500, 500), 
+                lines.Add(new Line(rnd.Next(-500, 500), rnd.Next(-500, 500),
                     rnd.Next(-500, 500), rnd.Next(-500, 500), Color.Black, Color.White));
 
             DateTime timer1 = DateTime.Now;

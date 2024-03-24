@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace lab_03
 {
@@ -38,7 +30,7 @@ namespace lab_03
 
         private void make_chart()
         {
-            
+
             string series1_name = "ЦДА";
             string series2_name = "Брезенхем float";
             string series3_name = "Брезенхем int";

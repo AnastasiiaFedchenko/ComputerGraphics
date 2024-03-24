@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace lab_03
 {
@@ -61,19 +57,19 @@ namespace lab_03
 
         private void swap(ref int a, ref int b)
         {
-            int temp = a; 
-            a = b; 
+            int temp = a;
+            a = b;
             b = temp;
         }
 
         public void draw(Graphics g, int offset_x, int offset_y, int k)
         {
-            Brush brush; 
+            Brush brush;
             int temp_x, temp_y;
             for (int i = 0; i < points.Count; i++)
             {
                 brush = new SolidBrush(points[i].Color);
-                temp_x = (points[i].X * k) + offset_x; 
+                temp_x = (points[i].X * k) + offset_x;
                 temp_y = offset_y - (points[i].Y * k);
                 g.FillRectangle(brush, temp_x - k, temp_y - k, k, k);
             }
@@ -85,7 +81,7 @@ namespace lab_03
             g.DrawLine(pen, (xs * k) + offset_x, offset_y - (ys * k), (xf * k) + offset_x, offset_y - (yf * k));
         }
 
-        public int controller(Method method, bool step_mode) 
+        public int controller(Method method, bool step_mode)
         {
             int res;
             if (method == Method.DDA)
@@ -107,13 +103,13 @@ namespace lab_03
         {
             return (a >= 0) ? 1 : -1;
         }
-        private int bresenham_float(bool step_mode) 
+        private int bresenham_float(bool step_mode)
         {
             int amount_of_steps = 0;
             bool exchanged = false;
             if (xs == xf && ys == yf)
                 points.Append(new point(xs, ys, line_color));
-            else 
+            else
             {
                 int dx = (xf - xs);
                 int dy = (yf - ys);
@@ -123,7 +119,7 @@ namespace lab_03
                 dx = Math.Abs(dx);
                 dy = Math.Abs(dy);
 
-                if (dy > dx) 
+                if (dy > dx)
                 {
                     swap(ref dx, ref dy);
                     exchanged = true;
@@ -137,7 +133,7 @@ namespace lab_03
                 int yb = ys;
                 amount_of_steps = 0;
 
-                while(x != xf || y != yf) 
+                while (x != xf || y != yf)
                 {
                     points.Add(new point(x, y, line_color));
                     if (e >= 0)
@@ -148,17 +144,17 @@ namespace lab_03
                             y += sy;
                         e -= 1;
                     }
-                    if (e <= 0) 
+                    if (e <= 0)
                     {
                         if (!exchanged)
                             x += sx;
-                        else 
+                        else
                             y += sy;
                         e += tan;
                     }
                     if (step_mode)
                     {
-                        if (xb != x &&  yb != y)
+                        if (xb != x && yb != y)
                             amount_of_steps++;
                         xb = x;
                         yb = y;
@@ -227,7 +223,7 @@ namespace lab_03
             return amount_of_steps;
         }
 
-        private List<Color> color_spectrum(int intensity) 
+        private List<Color> color_spectrum(int intensity)
         {
             int r_line = line_color.R;
             int g_line = line_color.G;
@@ -238,9 +234,9 @@ namespace lab_03
             double r_step = (r_back - r_line) / intensity;
             double g_step = (g_back - g_line) / intensity;
             double b_step = (b_back - b_line) / intensity;
-            List <Color> gradient = new List<Color>();
+            List<Color> gradient = new List<Color>();
             int temp_r, temp_g, temp_b;
-            for (int i = 0; i < intensity; i++) 
+            for (int i = 0; i < intensity; i++)
             {
                 temp_r = (int)Math.Round(r_line + (r_step * i));
                 temp_g = (int)Math.Round(g_line + (g_step * i));
@@ -252,7 +248,7 @@ namespace lab_03
             return gradient;
         }
 
-        private int bresenham_without_gradation(bool step_mode) 
+        private int bresenham_without_gradation(bool step_mode)
         {
             int intensity = 100;
             int amount_of_steps = 0;
@@ -278,7 +274,7 @@ namespace lab_03
 
             int xb = xs;
             int yb = ys;
-            while(x != xf || y != yf) 
+            while (x != xf || y != yf)
             {
                 int intensity_in_point = (int)Math.Round(e) - 1;
                 if (intensity_in_point < 0)
@@ -300,7 +296,7 @@ namespace lab_03
                     y += sy;
                     e -= w;
                 }
-                if (step_mode) 
+                if (step_mode)
                 {
                     if (xb != x && yb != y)
                         amount_of_steps++;
@@ -311,7 +307,7 @@ namespace lab_03
             return amount_of_steps;
         }
 
-        private int DDA(bool step_mode) 
+        private int DDA(bool step_mode)
         {
             int amount_of_steps = 0;
             if (xs == xf && ys == yf)
@@ -365,7 +361,7 @@ namespace lab_03
                 swap(ref sx, ref sy);
             }
             int x = (exchanged) ? ys : xs;
-            double y = (exchanged) ? xs: ys;
+            double y = (exchanged) ? xs : ys;
 
             if (dx == 0 && dy == 0)
             {
@@ -375,13 +371,13 @@ namespace lab_03
             double m = (double)dy / dx;
             int i = 0;
             int temp_x, temp_y;
-            while(i < (dx + 1))
+            while (i < (dx + 1))
             {
                 temp_x = x;
                 temp_y = (int)Math.Round(y);
                 if (exchanged)
                 {
-                    points.Add(new point(temp_y, temp_x, gradient[(int)((1 - Math.Abs(y -temp_y)) * 100) - 1]));
+                    points.Add(new point(temp_y, temp_x, gradient[(int)((1 - Math.Abs(y - temp_y)) * 100) - 1]));
                     points.Add(new point(temp_y + 1, temp_x, gradient[(int)(Math.Abs(y - temp_y) * 100)]));
                 }
                 else
