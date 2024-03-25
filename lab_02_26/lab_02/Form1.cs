@@ -1,5 +1,16 @@
+п»їusing System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace lab_02
 {
@@ -13,7 +24,7 @@ namespace lab_02
         public Form1()
         {
             InitializeComponent();
-            toolStrip1.ImageScalingSize = new Size(40, 40);
+            this.Size = new System.Drawing.Size(2147, 1400);
             start_position();
             this.Invalidate();
         }
@@ -21,45 +32,30 @@ namespace lab_02
         private void start_position()
         {
             shapes.Clear();
-            w1 = 1000;
-            h1 = 500;
+            w1 = 500;
+            h1 = 250;
             A = new Point((this.ClientSize.Width - toolStrip1.Width) / 2 - (w1 / 2) + toolStrip1.Width,
                 this.ClientSize.Height / 2 - (h1 / 2));
-            B = new Point(A.X + w1 / 2, A.Y - 300);
-            h = 300;
-            w2 = 300;
-            h2 = 100;
+            B = new Point(A.X + w1 / 2, A.Y - 150);
+            h = 150;
+            w2 = 150;
+            h2 = 50;
             C = new Point(A.X + w1 / 2, A.Y - (2 * h) / 3 + h2);
             D = new Point(A.X + w1 / 4, A.Y + h1 / 4);
-            r1 = 75;
+            r1 = 37;
             E = new Point(A.X + (w1 * 3) / 4, A.Y + h1 / 2);
-            r2 = 100;
-            r3 = 200;
+            r2 = 50;
+            r3 = 100;
 
             shapes.Add(new Polygon(A.X, A.Y, w1, h1, Color.Pink)); // wall
             shapes.Add(new Polygon(A, new Point(A.X + w1, A.Y), B, Color.Violet)); // roof
-            shapes.Add(new Polygon(C.X - w2 / 2, C.Y - 50, w2, h2, Color.LightSkyBlue)); // top window
+            shapes.Add(new Polygon(C.X - w2 / 2, C.Y - 25, w2, h2, Color.LightSkyBlue)); // top window
             shapes.Add(new Cross(C, w2 / 2, h2 / 2, Color.Blue));
             shapes.Add(new Ellipse(D, r1, r1, Color.LightSkyBlue)); // left window
             shapes.Add(new Cross(D, r1, r1, Color.Blue));
             shapes.Add(new Ellipse(E, r2, r3, Color.LightSkyBlue)); // right window
             shapes.Add(new Cross(E, r2, r3, Color.Blue));
             shapes.Add(new Rhomb(E, r2, r3, Color.Blue));
-        }
-
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -87,49 +83,49 @@ namespace lab_02
             double kx, ky; // scaling factors
             if (int.TryParse(Ox1TextBox.Text, out Ox1) == false)
             {
-                MessageBox.Show("Абсцисса центра вращения должна быть целым числом");
+                MessageBox.Show("                                                 ");
                 return;
             }
             if (int.TryParse(Oy1TextBox.Text, out Oy1) == false)
             {
-                MessageBox.Show("Ордината центра вращения должна быть целым числом");
+                MessageBox.Show("                                                 ");
                 return;
             }
             if (double.TryParse(degreeTextBox.Text, out degrees) == false)
             {
-                MessageBox.Show("Угол поворота должен быть вещественным числом");
+                MessageBox.Show("                                             ");
                 return;
             }
 
             if (int.TryParse(dxTextBox.Text, out dx) == false)
             {
-                MessageBox.Show("dx должно быть целым числом");
+                MessageBox.Show("dx                         ");
                 return;
             }
             if (int.TryParse(dyTextBox.Text, out dy) == false)
             {
-                MessageBox.Show("dy должно быть целым числом");
+                MessageBox.Show("dy                         ");
                 return;
             }
 
             if (int.TryParse(Ox2TextBox.Text, out Ox2) == false)
             {
-                MessageBox.Show("Абсцисса центра масштабирования должна быть целым числом");
+                MessageBox.Show("                                                        ");
                 return;
             }
             if (int.TryParse(Oy2TextBox.Text, out Oy2) == false)
             {
-                MessageBox.Show("Ордината центра масштабирования должна быть целым числом");
+                MessageBox.Show("                                                        ");
                 return;
             }
             if (double.TryParse(kxTextBox.Text, out kx) == false)
             {
-                MessageBox.Show("Коэффициент масштабирования по x должен быть вещественным числом");
+                MessageBox.Show("                               x                                ");
                 return;
             }
             if (double.TryParse(kyTextBox.Text, out ky) == false)
             {
-                MessageBox.Show("Коэффициент масштабирования по y должен быть вещественным числом");
+                MessageBox.Show("                               y                                ");
                 return;
             }
 
