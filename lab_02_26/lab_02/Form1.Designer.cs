@@ -1,4 +1,7 @@
-﻿namespace lab_02
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace lab_02
 {
     partial class Form1
     {
@@ -28,289 +31,312 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            toolStrip1 = new ToolStrip();
-            toolStripLabel1 = new ToolStripLabel();
-            toolStripLabel12 = new ToolStripLabel();
-            Ox1TextBox = new ToolStripTextBox();
-            toolStripLabel13 = new ToolStripLabel();
-            Oy1TextBox = new ToolStripTextBox();
-            toolStripLabel2 = new ToolStripLabel();
-            degreeTextBox = new ToolStripTextBox();
-            toolStripLabel3 = new ToolStripLabel();
-            toolStripLabel4 = new ToolStripLabel();
-            dxTextBox = new ToolStripTextBox();
-            toolStripLabel5 = new ToolStripLabel();
-            dyTextBox = new ToolStripTextBox();
-            toolStripLabel6 = new ToolStripLabel();
-            toolStripLabel8 = new ToolStripLabel();
-            Ox2TextBox = new ToolStripTextBox();
-            toolStripLabel9 = new ToolStripLabel();
-            Oy2TextBox = new ToolStripTextBox();
-            toolStripLabel10 = new ToolStripLabel();
-            kxTextBox = new ToolStripTextBox();
-            toolStripLabel7 = new ToolStripLabel();
-            kyTextBox = new ToolStripTextBox();
-            drawButton = new ToolStripButton();
-            toolStripButton4 = new ToolStripButton();
-            UndoButton = new ToolStripButton();
-            RedoButton = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            contextMenuStrip2 = new ContextMenuStrip(components);
-            toolStrip1.SuspendLayout();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel12 = new System.Windows.Forms.ToolStripLabel();
+            this.Ox1TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel13 = new System.Windows.Forms.ToolStripLabel();
+            this.Oy1TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.degreeTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.dxTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.dyTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
+            this.Ox2TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
+            this.Oy2TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
+            this.kxTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
+            this.kyTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.drawButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.UndoButton = new System.Windows.Forms.ToolStripButton();
+            this.RedoButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            toolStrip1.Dock = DockStyle.Left;
-            toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel12, Ox1TextBox, toolStripLabel13, Oy1TextBox, toolStripLabel2, degreeTextBox, toolStripLabel3, toolStripLabel4, dxTextBox, toolStripLabel5, dyTextBox, toolStripLabel6, toolStripLabel8, Ox2TextBox, toolStripLabel9, Oy2TextBox, toolStripLabel10, kxTextBox, toolStripLabel7, kyTextBox, drawButton, toolStripButton4, UndoButton, RedoButton, toolStripSeparator1 });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(408, 1405);
-            toolStrip1.TabIndex = 2;
-            toolStrip1.Text = "toolStrip1";
-            toolStrip1.ItemClicked += toolStrip1_ItemClicked;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripLabel12,
+            this.Ox1TextBox,
+            this.toolStripLabel13,
+            this.Oy1TextBox,
+            this.toolStripLabel2,
+            this.degreeTextBox,
+            this.toolStripLabel3,
+            this.toolStripLabel4,
+            this.dxTextBox,
+            this.toolStripLabel5,
+            this.dyTextBox,
+            this.toolStripLabel6,
+            this.toolStripLabel8,
+            this.Ox2TextBox,
+            this.toolStripLabel9,
+            this.Oy2TextBox,
+            this.toolStripLabel10,
+            this.kxTextBox,
+            this.toolStripLabel7,
+            this.kyTextBox,
+            this.drawButton,
+            this.toolStripButton4,
+            this.UndoButton,
+            this.RedoButton,
+            this.toolStripSeparator1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(408, 1330);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
-            toolStripLabel1.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(403, 49);
-            toolStripLabel1.Text = "Поворот";
+            this.toolStripLabel1.Font = new System.Drawing.Font("Arial", 16.125F);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(403, 49);
+            this.toolStripLabel1.Text = "Поворот";
             // 
             // toolStripLabel12
             // 
-            toolStripLabel12.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel12.Name = "toolStripLabel12";
-            toolStripLabel12.Size = new Size(403, 36);
-            toolStripLabel12.Text = "Ox:";
-            toolStripLabel12.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel12.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel12.Name = "toolStripLabel12";
+            this.toolStripLabel12.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel12.Text = "Ox:";
+            this.toolStripLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Ox1TextBox
             // 
-            Ox1TextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Ox1TextBox.Name = "Ox1TextBox";
-            Ox1TextBox.Size = new Size(399, 44);
-            Ox1TextBox.Text = "0";
+            this.Ox1TextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.Ox1TextBox.Name = "Ox1TextBox";
+            this.Ox1TextBox.Size = new System.Drawing.Size(399, 44);
+            this.Ox1TextBox.Text = "0";
             // 
             // toolStripLabel13
             // 
-            toolStripLabel13.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel13.Name = "toolStripLabel13";
-            toolStripLabel13.Size = new Size(403, 36);
-            toolStripLabel13.Text = "Oy:";
-            toolStripLabel13.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel13.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel13.Name = "toolStripLabel13";
+            this.toolStripLabel13.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel13.Text = "Oy:";
+            this.toolStripLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Oy1TextBox
             // 
-            Oy1TextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Oy1TextBox.Name = "Oy1TextBox";
-            Oy1TextBox.Size = new Size(399, 44);
-            Oy1TextBox.Text = "0";
+            this.Oy1TextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.Oy1TextBox.Name = "Oy1TextBox";
+            this.Oy1TextBox.Size = new System.Drawing.Size(399, 44);
+            this.Oy1TextBox.Text = "0";
             // 
             // toolStripLabel2
             // 
-            toolStripLabel2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(403, 36);
-            toolStripLabel2.Text = "Введите градусы поворота";
+            this.toolStripLabel2.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel2.Text = "Введите градусы поворота";
             // 
             // degreeTextBox
             // 
-            degreeTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            degreeTextBox.Name = "degreeTextBox";
-            degreeTextBox.Size = new Size(399, 44);
-            degreeTextBox.Text = "0";
+            this.degreeTextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.degreeTextBox.Name = "degreeTextBox";
+            this.degreeTextBox.Size = new System.Drawing.Size(399, 44);
+            this.degreeTextBox.Text = "0";
             // 
             // toolStripLabel3
             // 
-            toolStripLabel3.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel3.Name = "toolStripLabel3";
-            toolStripLabel3.Size = new Size(403, 49);
-            toolStripLabel3.Text = "Перенос";
+            this.toolStripLabel3.Font = new System.Drawing.Font("Arial", 16.125F);
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(403, 49);
+            this.toolStripLabel3.Text = "Перенос";
             // 
             // toolStripLabel4
             // 
-            toolStripLabel4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel4.Name = "toolStripLabel4";
-            toolStripLabel4.Size = new Size(403, 36);
-            toolStripLabel4.Text = "dx:";
-            toolStripLabel4.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel4.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel4.Text = "dx:";
+            this.toolStripLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dxTextBox
             // 
-            dxTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dxTextBox.Name = "dxTextBox";
-            dxTextBox.Size = new Size(399, 44);
-            dxTextBox.Text = "0";
+            this.dxTextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.dxTextBox.Name = "dxTextBox";
+            this.dxTextBox.Size = new System.Drawing.Size(399, 44);
+            this.dxTextBox.Text = "0";
             // 
             // toolStripLabel5
             // 
-            toolStripLabel5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel5.Name = "toolStripLabel5";
-            toolStripLabel5.Size = new Size(403, 36);
-            toolStripLabel5.Text = "dy:";
-            toolStripLabel5.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel5.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel5.Text = "dy:";
+            this.toolStripLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dyTextBox
             // 
-            dyTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dyTextBox.Name = "dyTextBox";
-            dyTextBox.Size = new Size(399, 44);
-            dyTextBox.Text = "0";
+            this.dyTextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.dyTextBox.Name = "dyTextBox";
+            this.dyTextBox.Size = new System.Drawing.Size(399, 44);
+            this.dyTextBox.Text = "0";
             // 
             // toolStripLabel6
             // 
-            toolStripLabel6.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel6.Name = "toolStripLabel6";
-            toolStripLabel6.Size = new Size(403, 49);
-            toolStripLabel6.Text = "Масштабирование";
+            this.toolStripLabel6.Font = new System.Drawing.Font("Arial", 16.125F);
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(403, 49);
+            this.toolStripLabel6.Text = "Масштабирование";
             // 
             // toolStripLabel8
             // 
-            toolStripLabel8.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel8.Name = "toolStripLabel8";
-            toolStripLabel8.Size = new Size(403, 36);
-            toolStripLabel8.Text = "Ox:";
-            toolStripLabel8.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel8.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel8.Name = "toolStripLabel8";
+            this.toolStripLabel8.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel8.Text = "Ox:";
+            this.toolStripLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Ox2TextBox
             // 
-            Ox2TextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Ox2TextBox.Name = "Ox2TextBox";
-            Ox2TextBox.Size = new Size(399, 44);
-            Ox2TextBox.Text = "0";
+            this.Ox2TextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.Ox2TextBox.Name = "Ox2TextBox";
+            this.Ox2TextBox.Size = new System.Drawing.Size(399, 44);
+            this.Ox2TextBox.Text = "0";
             // 
             // toolStripLabel9
             // 
-            toolStripLabel9.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel9.Name = "toolStripLabel9";
-            toolStripLabel9.Size = new Size(403, 36);
-            toolStripLabel9.Text = "Oy:";
-            toolStripLabel9.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel9.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel9.Name = "toolStripLabel9";
+            this.toolStripLabel9.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel9.Text = "Oy:";
+            this.toolStripLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Oy2TextBox
             // 
-            Oy2TextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Oy2TextBox.Name = "Oy2TextBox";
-            Oy2TextBox.Size = new Size(399, 44);
-            Oy2TextBox.Text = "0";
+            this.Oy2TextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.Oy2TextBox.Name = "Oy2TextBox";
+            this.Oy2TextBox.Size = new System.Drawing.Size(399, 44);
+            this.Oy2TextBox.Text = "0";
             // 
             // toolStripLabel10
             // 
-            toolStripLabel10.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel10.Name = "toolStripLabel10";
-            toolStripLabel10.Size = new Size(403, 36);
-            toolStripLabel10.Text = "Kx:";
-            toolStripLabel10.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel10.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel10.Name = "toolStripLabel10";
+            this.toolStripLabel10.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel10.Text = "Kx:";
+            this.toolStripLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // kxTextBox
             // 
-            kxTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            kxTextBox.Name = "kxTextBox";
-            kxTextBox.Size = new Size(399, 44);
-            kxTextBox.Text = "1";
+            this.kxTextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.kxTextBox.Name = "kxTextBox";
+            this.kxTextBox.Size = new System.Drawing.Size(399, 44);
+            this.kxTextBox.Text = "1";
             // 
             // toolStripLabel7
             // 
-            toolStripLabel7.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripLabel7.Name = "toolStripLabel7";
-            toolStripLabel7.Size = new Size(403, 36);
-            toolStripLabel7.Text = "Ky:";
-            toolStripLabel7.TextAlign = ContentAlignment.MiddleLeft;
+            this.toolStripLabel7.Font = new System.Drawing.Font("Arial", 12F);
+            this.toolStripLabel7.Name = "toolStripLabel7";
+            this.toolStripLabel7.Size = new System.Drawing.Size(403, 36);
+            this.toolStripLabel7.Text = "Ky:";
+            this.toolStripLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // kyTextBox
             // 
-            kyTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            kyTextBox.Name = "kyTextBox";
-            kyTextBox.Size = new Size(399, 44);
-            kyTextBox.Text = "1";
+            this.kyTextBox.Font = new System.Drawing.Font("Arial", 12F);
+            this.kyTextBox.Name = "kyTextBox";
+            this.kyTextBox.Size = new System.Drawing.Size(399, 44);
+            this.kyTextBox.Text = "1";
             // 
             // drawButton
             // 
-            drawButton.AutoSize = false;
-            drawButton.BackColor = Color.FromArgb(192, 192, 255);
-            drawButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            drawButton.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            drawButton.ImageTransparentColor = Color.Magenta;
-            drawButton.Name = "drawButton";
-            drawButton.Overflow = ToolStripItemOverflow.Never;
-            drawButton.RightToLeft = RightToLeft.Yes;
-            drawButton.Size = new Size(403, 100);
-            drawButton.Text = "Отрисовать";
-            drawButton.TextImageRelation = TextImageRelation.TextAboveImage;
-            drawButton.Click += drawButton_Click;
+            this.drawButton.AutoSize = false;
+            this.drawButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.drawButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.drawButton.Font = new System.Drawing.Font("Arial", 16.125F);
+            this.drawButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.drawButton.Name = "drawButton";
+            this.drawButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.drawButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.drawButton.Size = new System.Drawing.Size(200, 100);
+            this.drawButton.Text = "Отрисовать";
+            this.drawButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.drawButton.Click += new System.EventHandler(this.drawButton_Click);
             // 
             // toolStripButton4
             // 
-            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton4.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripButton4.Image = (Image)resources.GetObject("toolStripButton4.Image");
-            toolStripButton4.ImageTransparentColor = Color.Magenta;
-            toolStripButton4.Name = "toolStripButton4";
-            toolStripButton4.Size = new Size(403, 46);
-            toolStripButton4.Text = "Сброс";
-            toolStripButton4.Click += toolStripButton4_Click;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(403, 46);
+            this.toolStripButton4.Text = "Сброс";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // UndoButton
             // 
-            UndoButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            UndoButton.Enabled = false;
-            UndoButton.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            UndoButton.Image = (Image)resources.GetObject("UndoButton.Image");
-            UndoButton.ImageTransparentColor = Color.Magenta;
-            UndoButton.Name = "UndoButton";
-            UndoButton.Size = new Size(403, 46);
-            UndoButton.Text = "Undo";
-            UndoButton.Click += UndoButton_Click;
+            this.UndoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.UndoButton.Enabled = false;
+            this.UndoButton.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.UndoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UndoButton.Name = "UndoButton";
+            this.UndoButton.Size = new System.Drawing.Size(403, 46);
+            this.UndoButton.Text = "Undo";
+            this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
             // 
             // RedoButton
             // 
-            RedoButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            RedoButton.Enabled = false;
-            RedoButton.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            RedoButton.Image = (Image)resources.GetObject("RedoButton.Image");
-            RedoButton.ImageTransparentColor = Color.Magenta;
-            RedoButton.Name = "RedoButton";
-            RedoButton.Size = new Size(403, 46);
-            RedoButton.Text = "Redo";
-            RedoButton.Click += RedoButton_Click;
+            this.RedoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RedoButton.Enabled = false;
+            this.RedoButton.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.RedoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RedoButton.Name = "RedoButton";
+            this.RedoButton.Size = new System.Drawing.Size(403, 46);
+            this.RedoButton.Text = "Redo";
+            this.RedoButton.Click += new System.EventHandler(this.RedoButton_Click);
             // 
             // toolStripSeparator1
             // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(403, 6);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(403, 6);
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.ImageScalingSize = new Size(32, 32);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // contextMenuStrip2
             // 
-            contextMenuStrip2.ImageScalingSize = new Size(32, 32);
-            contextMenuStrip2.Name = "contextMenuStrip2";
-            contextMenuStrip2.Size = new Size(61, 4);
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2177, 1405);
-            Controls.Add(toolStrip1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
-            MaximizeBox = false;
-            Name = "Form1";
-            Text = "Лабораторная работа №2";
-            Paint += Form1_Paint;
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(2147, 1330);
+            this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(2177, 1405);
+            this.Name = "Form1";
+            this.Text = "Лабораторная работа №2";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

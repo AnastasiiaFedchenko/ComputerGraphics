@@ -25,18 +25,19 @@ namespace lab_02
             this.kx = kx;
             this.ky = ky;
         }
-        public int Ox1 { get { return ox1; } set {  ox1 = value; } } 
-        public int Oy1 { get { return oy1; } set {  oy1 = value; } }
+        public int Ox1 { get { return ox1; } set { ox1 = value; } }
+        public int Oy1 { get { return oy1; } set { oy1 = value; } }
         public double Degrees { get { return degrees; } set { degrees = value; } }
         public int Dx { get { return dx; } set { dx = value; } }
         public int Dy { get { return dy; } set { dy = value; } }
-        public int Ox2 { get {  return ox2; } set {  ox2 = value; } }
-        public int Oy2 { get { return oy2; } set {  oy2 = value; } }
+        public int Ox2 { get { return ox2; } set { ox2 = value; } }
+        public int Oy2 { get { return oy2; } set { oy2 = value; } }
         public double Kx { get { return kx; } set { kx = value; } }
         public double Ky { get { return ky; } set { ky = value; } }
-        public object Clone() 
+        public object Clone()
         {
             return this.MemberwiseClone();
         }
     }
+
 }
