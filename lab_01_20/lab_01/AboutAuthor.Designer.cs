@@ -1,4 +1,7 @@
-﻿namespace lab_01
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace lab_01
 {
     partial class AboutAuthor
     {
@@ -42,7 +45,6 @@
             label1.Size = new Size(374, 42);
             label1.TabIndex = 0;
             label1.Text = "Федченко Анастасия";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -66,7 +68,6 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "AboutAuthor";
             Text = "Об авторе";
-            Load += AboutAuthor_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,23 +1,17 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace lab_01
 {
-    public partial class Main : Form
+    public partial class Form1 : Form
     {
         AboutAuthor f2;
         AboutProgram f3;
@@ -31,19 +25,19 @@ namespace lab_01
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
         int DX, DY;
         Shape O;
-        int OX, OY; // начало координат
-        double Kx; // коэффициент масштабирования 
+        int OX, OY; //                 
+        double Kx; //                             
         double Ky;
-        public Main()
+        public Form1()
         {
             InitializeComponent();
-            toolStripComboBox1.SelectedIndex = 0;
+            SetComboBox.SelectedIndex = 0;
             f4 = new AddPointForm();
             f4.NP += NewPointHasBeenAdded;
             OX = 100;
             OY = (int)(this.ClientSize.Height - 100);
             O = new Shape(0, 0, Color.Purple);
-            Kx = 100; // единичный отрезок
+            Kx = 100; //                  
             Ky = 100;
             LineColor = Color.Black;
         }
@@ -51,19 +45,19 @@ namespace lab_01
         {
             DoubleBuffered = true;
         }
-        private void обАвтореToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutAuthorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             f2 = new AboutAuthor();
             f2.Owner = this;
             f2.Visible = true;
         }
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             f3 = new AboutProgram();
             f3.Owner = this;
             f3.Visible = true;
         }
-        private void добавитьТочкуВПервоеМножествоToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddPointToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             if (f4.IsDisposed)
@@ -97,7 +91,7 @@ namespace lab_01
             return result;
         }
 
-        int to_pixels_X(Shape point) 
+        int to_pixels_X(Shape point)
         {
             return OX + (int)((point.X - O.X) * Kx);
         }
@@ -117,10 +111,10 @@ namespace lab_01
             return (OY - y) / Ky + O.Y;
         }
 
-        private void Main_MouseDown(object sender, MouseEventArgs e)
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             ThePointsDragAndDropping.Clear();
-            if (e.Button == MouseButtons.Right)//удаление точки
+            if (e.Button == MouseButtons.Right)//              
             {
                 bool found = false;
                 for (int i = tops.Count - 1; i >= 0 && found == false; i--)
@@ -135,7 +129,7 @@ namespace lab_01
             else
             {
                 bool Inside = false;
-                for (int i = 0; i < tops.Count; i++)//перемещение точек
+                for (int i = 0; i < tops.Count; i++)//                 
                 {
                     if (tops[i].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
                     {
@@ -154,12 +148,12 @@ namespace lab_01
                     Inside = true;
                 if (res_blue.Count == 4 && res_blue[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
                     Inside = true;
-                if (Inside == false) // добавление новой точки
+                if (Inside == false) //                       
                 {
-                    Color color_now = (toolStripComboBox1.SelectedIndex == 0) ? Color.Red : Color.Blue;
+                    Color color_now = (SetComboBox.SelectedIndex == 0) ? Color.Red : Color.Blue;
                     Shape new_point = new Shape(to_original_X(e.Location.X), to_original_Y(e.Location.Y), color_now);
                     if (does_this_point_already_exist(new_point))
-                        MessageBox.Show("Точка со схожими координатами уже существует.");
+                        MessageBox.Show("                                            .");
                     else
                         tops.Add(new_point);
                 }
@@ -204,7 +198,7 @@ namespace lab_01
             O.Y = ls.Y;
         }
 
-        private void Main_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -219,7 +213,7 @@ namespace lab_01
                 this.Refresh();
             }
         }
-        private void Main_MouseUp(object sender, MouseEventArgs e)
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             if (ThePointsDragAndDropping.Count() > 0)
             {
@@ -238,14 +232,14 @@ namespace lab_01
             this.Invalidate();
         }
 
-        void draw_line_from_shape(Graphics g, Pen pen, Shape A, Shape B)
+        void Draw_line_from_shape(Graphics g, Pen pen, Shape A, Shape B)
         {
             g.DrawLine(pen,
                     new Point(to_pixels_X(A), to_pixels_Y(A)),
                     new Point(to_pixels_X(B), to_pixels_Y(B)));
         }
 
-        void draw_result_of_calculation(Graphics g) 
+        void Draw_result_of_calculation(Graphics g)
         {
             Pen pen = new Pen(LineColor, (float)(5));
             for (int i = 0; i < 3; i++)
@@ -253,9 +247,9 @@ namespace lab_01
                 for (int j = i; j < 3; j++)
                 {
                     pen.Color = Color.Red;
-                    draw_line_from_shape(g, pen, res_red[i], res_red[j]);
+                    Draw_line_from_shape(g, pen, res_red[i], res_red[j]);
                     pen.Color = Color.Blue;
-                    draw_line_from_shape(g, pen, res_blue[i], res_blue[j]);
+                    Draw_line_from_shape(g, pen, res_blue[i], res_blue[j]);
                 }
             }
             Shape orth1 = res_red[3];
@@ -264,24 +258,24 @@ namespace lab_01
             for (int i = 0; i < 3; i++)
             {
                 pen.Color = Color.DarkRed;
-                draw_line_from_shape(g, pen, orth1, res_red[i]);
+                Draw_line_from_shape(g, pen, orth1, res_red[i]);
                 pen.Color = Color.DarkBlue;
-                draw_line_from_shape(g, pen, orth2, res_blue[i]);
+                Draw_line_from_shape(g, pen, orth2, res_blue[i]);
             }
             pen.Width = (float)(5);
             pen.Color = Color.Purple;
-            draw_line_from_shape(g, pen, orth1, orth2);
+            Draw_line_from_shape(g, pen, orth1, orth2);
             orth1.COLOR = Color.DarkRed;
             orth1.draw(g, to_pixels_X(orth1), to_pixels_Y(orth1));
             orth2.COLOR = Color.DarkBlue;
             orth2.draw(g, to_pixels_X(orth2), to_pixels_Y(orth2));
         }
 
-        private void Main_Paint(object sender, PaintEventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             if ((res_red.Count + res_blue.Count) == 8)
-                draw_result_of_calculation(g);
+                Draw_result_of_calculation(g);
             Pen pen = new Pen(LineColor, (float)(5 / 4.0));
             g.DrawLine(pen, new Point(OX, 2000), new Point(OX, 0));
             g.DrawLine(pen, new Point(2000, OY), new Point(0, OY));
@@ -314,19 +308,19 @@ namespace lab_01
         {
             e.DragAndDropped = false;
             if (does_this_point_already_exist(e))
-                MessageBox.Show("Точка со схожими координатами уже существует.");
+                MessageBox.Show("This point already exists.");
             else
                 tops.Add(e);
             this.Invalidate();
         }
 
-        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            toolStripComboBox1.Enabled = false;
-            toolStripComboBox1.Enabled = true;
+            SetComboBox.Enabled = false;
+            SetComboBox.Enabled = true;
         }
 
-        private void Main_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < tops.Count; i++)
             {
@@ -337,7 +331,7 @@ namespace lab_01
                     f5.Visible = true;
                 }
             }
-            if (res_red.Count() == 4 && res_red[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky)) 
+            if (res_red.Count() == 4 && res_red[3].IsInside(e.Location.X, e.Location.Y, O, OX, OY, Kx, Ky))
             {
                 f5 = new AboutPoint(res_red[3], O, OX, OY, Kx, Ky);
                 f5.Owner = this;
@@ -351,17 +345,17 @@ namespace lab_01
             }
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void PlusStripMenuItem_Click(object sender, EventArgs e)
         {
             Kx = Kx + 5;
             Ky = Ky + 5;
             this.Invalidate();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void MinusStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Kx - 5) < 0 || (Ky - 5) < 0)
-                MessageBox.Show("Дальше уменьшение невозможно.");
+                MessageBox.Show("Cannot make it that small.");
             else if ((Kx - 5) < 1 || (Ky - 5) < 1)
             {
                 Kx = Kx - 0.1;
@@ -375,7 +369,7 @@ namespace lab_01
             this.Invalidate();
         }
 
-        private void autoFocusToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AutoFocusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tops.Count > 1)
                 find_new_Kx_Ky(tops);
@@ -393,7 +387,7 @@ namespace lab_01
             return res;
         }
 
-        private Shape find_orthocenter(Shape A, Shape B, Shape C)
+        private Shape Find_orthocenter(Shape A, Shape B, Shape C)
         {
             double a1 = C.X - B.X;
             double b1 = C.Y - B.Y;
@@ -404,11 +398,11 @@ namespace lab_01
             return Kramer(a1, b1, c1, a2, b2, c2);
         }
 
-        private double to_degrees(double a)
+        private double To_degrees(double a)
         {
             return (a * 180.0) / Math.PI;
         }
-        private double find_angle(Shape A, Shape B)
+        private double Find_angle(Shape A, Shape B)
         {
             double res;
             if (A.Y == B.Y)
@@ -419,14 +413,14 @@ namespace lab_01
             {
                 double tan = (Math.Max(A.Y, B.Y) - Math.Min(A.Y, B.Y)) /
                     (Math.Max(A.X, B.X) - Math.Min(A.X, B.X));
-                res = to_degrees(Math.Atan(tan));
+                res = To_degrees(Math.Atan(tan));
                 if (!(((A.X > B.X) && (A.Y > B.Y)) || ((A.X < B.X) && (A.Y < B.Y))))
                     res = 180.0 - res;
             }
             return res;
         }
 
-        private void посчитатьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CalculateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<Shape> red = new List<Shape>();
             List<Shape> blue = new List<Shape>();
@@ -437,24 +431,21 @@ namespace lab_01
                     red.Add(i);
                 else
                     blue.Add(i);
-            if (red.Count < 3 || blue.Count < 3) 
+            if (red.Count < 3 || blue.Count < 3)
             {
-                MessageBox.Show("Для проведения подсчётов требуется\n" +
-                    "не менее трёх элементов в каждом множестве.");
+                MessageBox.Show("Not enough points.");
                 return;
             }
-            else if (red.Count == 3 && Math.Abs(((red[2].X - red[0].X) / (red[1].X - red[0].X)) - 
-                    ((red[2].Y - red[0].Y) / (red[1].Y - red[0].Y))) < 0.01) 
+            else if (red.Count == 3 && Math.Abs(((red[2].X - red[0].X) / (red[1].X - red[0].X)) -
+                    ((red[2].Y - red[0].Y) / (red[1].Y - red[0].Y))) < 0.01)
             {
-                    MessageBox.Show("Все точки в первом множестве лежат на одной прямой.\n" +
-                        "Нельзя построить треугольник.");
-                    return;
+                MessageBox.Show("All red points are on the same line.");
+                return;
             }
             else if (blue.Count == 3 && Math.Abs(((blue[2].X - blue[0].X) / (blue[1].X - blue[0].X)) -
                     ((blue[2].Y - blue[0].Y) / (blue[1].Y - blue[0].Y))) < 0.01)
             {
-                MessageBox.Show("Все точки во втором множестве лежат на одной прямой.\n" +
-                    "Нельзя построить треугольник.");
+                MessageBox.Show("All blue points are on the same line.");
                 return;
             }
 
@@ -464,15 +455,15 @@ namespace lab_01
                 {
                     for (int i3 = i2 + 1; i3 < red.Count; i3++)
                     {
-                        Shape orthocenter1 = find_orthocenter(red[i1], red[i2], red[i3]);
+                        Shape orthocenter1 = Find_orthocenter(red[i1], red[i2], red[i3]);
                         for (int j1 = 0; j1 < (blue.Count - 2); j1++)
                         {
                             for (int j2 = j1 + 1; j2 < (blue.Count - 1); j2++)
                             {
                                 for (int j3 = j2 + 1; j3 < blue.Count; j3++)
                                 {
-                                    Shape orthocenter2 = find_orthocenter(blue[j1], blue[j2], blue[j3]);
-                                    double angle = find_angle(orthocenter1, orthocenter2);
+                                    Shape orthocenter2 = Find_orthocenter(blue[j1], blue[j2], blue[j3]);
+                                    double angle = Find_angle(orthocenter1, orthocenter2);
                                     if (angle < min_angle)
                                     {
                                         min_angle = angle;
@@ -489,15 +480,15 @@ namespace lab_01
                     }
                 }
             }
-            List <Shape> temp = new List <Shape>();
+            List<Shape> temp = new List<Shape>();
             temp.AddRange(res_red);
             temp.AddRange(res_blue);
             find_new_Kx_Ky(temp);
             this.Invalidate();
-            MessageBox.Show(string.Format("Угол с осью OX = {0:f2}°", min_angle));
+            MessageBox.Show(string.Format("The angle with OX is {0:f2} ", min_angle));
         }
 
-        private void сбросToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             res_red.Clear();
             res_blue.Clear();

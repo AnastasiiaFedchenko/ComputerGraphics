@@ -8,7 +8,7 @@ namespace lab_01
 {
     abstract public class Change
     {
-        static public Main form;
+        static public Form1 form;
     }
     public class MovePoint : Change
     {
@@ -47,4 +47,5 @@ namespace lab_01
             }
         }
     }
+
 }

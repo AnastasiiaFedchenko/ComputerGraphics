@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static lab_01.Shape;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace lab_01
 {
@@ -17,15 +17,10 @@ namespace lab_01
         int OX;
         int OY;
         double K;
-        public event NewPointCanBeAdded NP;
+        public event Shape.NewPointCanBeAdded NP;
         public AddPointForm()
         {
             InitializeComponent();
-        }
-
-        private void AddPointForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,9 +52,5 @@ namespace lab_01
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

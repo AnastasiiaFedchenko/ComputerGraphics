@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace lab_01
 {
-    public class Shape: EventArgs
+    public class Shape : EventArgs
     {
         protected double x;
         protected double y;
@@ -21,7 +21,7 @@ namespace lab_01
         {
             this.x = x;
             this.y = y;
-            this.r = 15; 
+            this.r = 15;
             draganddropped = true;
             color = color_now;
             brush = new SolidBrush(color);
@@ -42,7 +42,8 @@ namespace lab_01
             }
         }
         public bool DragAndDropped
-        {   get
+        {
+            get
             { return draganddropped; }
             set
             { draganddropped = value; }
@@ -62,7 +63,7 @@ namespace lab_01
             set
             { offsetY = value; }
         }
-        public void draw(Graphics g, int x_pixel, int y_pixel) 
+        public void draw(Graphics g, int x_pixel, int y_pixel)
         {
             g.FillEllipse(brush, x_pixel - r, y_pixel - r, 2 * r, 2 * r);
         }
@@ -77,4 +78,5 @@ namespace lab_01
 
         public delegate void NewPointCanBeAdded(object sender, Shape e);
     }
+
 }
