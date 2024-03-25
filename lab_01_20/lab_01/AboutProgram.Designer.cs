@@ -1,4 +1,7 @@
-﻿namespace lab_01
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace lab_01
 {
     partial class AboutProgram
     {
@@ -29,91 +32,126 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutProgram));
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 98);
-            label1.Name = "label1";
-            label1.Size = new Size(994, 160);
-            label1.TabIndex = 0;
-            label1.Text = resources.GetString("label1.Text");
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 10.125F);
+            this.label1.Location = new System.Drawing.Point(11, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 32);
+            this.label1.TabIndex = 0;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(12, 46);
-            label2.Name = "label2";
-            label2.Size = new Size(287, 36);
-            label2.TabIndex = 1;
-            label2.Text = "Решаемая задача:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F);
+            this.label2.Location = new System.Drawing.Point(11, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(287, 36);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Решаемая задача:";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(12, 289);
-            label3.Name = "label3";
-            label3.Size = new Size(282, 36);
-            label3.TabIndex = 2;
-            label3.Text = "Всё про вершины:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 12F);
+            this.label3.Location = new System.Drawing.Point(11, 226);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(282, 36);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Всё про вершины:";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(12, 341);
-            label4.Name = "label4";
-            label4.Size = new Size(929, 224);
-            label4.TabIndex = 3;
-            label4.Text = resources.GetString("label4.Text");
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 10.125F);
+            this.label4.Location = new System.Drawing.Point(11, 266);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 32);
+            this.label4.TabIndex = 3;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(12, 596);
-            label5.Name = "label5";
-            label5.Size = new Size(392, 36);
-            label5.TabIndex = 4;
-            label5.Text = "Остальные пункты меню:";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 12F);
+            this.label5.Location = new System.Drawing.Point(11, 466);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(392, 36);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Остальные пункты меню:";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Arial", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(12, 657);
-            label6.Name = "label6";
-            label6.Size = new Size(886, 192);
-            label6.TabIndex = 5;
-            label6.Text = resources.GetString("label6.Text");
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 10.125F);
+            this.label6.Location = new System.Drawing.Point(11, 513);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 32);
+            this.label6.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(17, 84);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(880, 135);
+            this.label7.TabIndex = 6;
+            this.label7.Text = resources.GetString("label7.Text");
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 9F);
+            this.label8.Location = new System.Drawing.Point(12, 273);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(819, 189);
+            this.label8.TabIndex = 7;
+            this.label8.Text = resources.GetString("label8.Text");
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 9F);
+            this.label9.Location = new System.Drawing.Point(17, 520);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(786, 162);
+            this.label9.TabIndex = 8;
+            this.label9.Text = resources.GetString("label9.Text");
             // 
             // AboutProgram
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1023, 1168);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "AboutProgram";
-            Text = "О программе";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(913, 708);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "AboutProgram";
+            this.Text = "О программе";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -124,5 +162,9 @@
         private Label label4;
         private Label label5;
         private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label label9;
     }
+
 }

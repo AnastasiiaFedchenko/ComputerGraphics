@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace lab_01
 {
@@ -28,6 +29,11 @@ namespace lab_01
             else label4.Text = "Ортоцентр";
             label5.Text = string.Format("{0:f3}", point.X);
             label6.Text = string.Format("{0:f3}", point.Y);
+
+        }
+
+        private void AboutPoint_Load(object sender, EventArgs e)
+        {
 
         }
     }

@@ -1,4 +1,7 @@
-﻿namespace lab_01
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace lab_01
 {
     partial class AddPointForm
     {
@@ -28,132 +31,139 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            button1 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            groupBox1.SuspendLayout();
-            SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(54, 75);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(415, 221);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Выберите множество";
-            groupBox1.Enter += groupBox1_Enter;
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.groupBox1.Location = new System.Drawing.Point(50, 59);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(462, 173);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Выберите множество";
             // 
             // radioButton2
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.BackColor = Color.Blue;
-            radioButton2.ForeColor = Color.White;
-            radioButton2.Location = new Point(0, 160);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(173, 46);
-            radioButton2.TabIndex = 1;
-            radioButton2.Text = "Второе";
-            radioButton2.UseVisualStyleBackColor = false;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.BackColor = System.Drawing.Color.Blue;
+            this.radioButton2.ForeColor = System.Drawing.Color.White;
+            this.radioButton2.Location = new System.Drawing.Point(0, 125);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(173, 46);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "Второе";
+            this.radioButton2.UseVisualStyleBackColor = false;
             // 
             // radioButton1
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.BackColor = Color.Red;
-            radioButton1.Checked = true;
-            radioButton1.ForeColor = Color.White;
-            radioButton1.Location = new Point(6, 74);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(178, 46);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Первое";
-            radioButton1.UseVisualStyleBackColor = false;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.BackColor = System.Drawing.Color.Red;
+            this.radioButton1.Checked = true;
+            this.radioButton1.ForeColor = System.Drawing.Color.White;
+            this.radioButton1.Location = new System.Drawing.Point(6, 58);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(178, 46);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Первое";
+            this.radioButton1.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
-            button1.Font = new Font("Arial", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(57, 485);
-            button1.Name = "button1";
-            button1.Size = new Size(296, 80);
-            button1.TabIndex = 1;
-            button1.Text = "Добавить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Font = new System.Drawing.Font("Arial", 18F);
+            this.button1.Location = new System.Drawing.Point(53, 379);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(273, 62);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(54, 343);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 42);
-            label1.TabIndex = 2;
-            label1.Text = "X:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.label1.Location = new System.Drawing.Point(50, 268);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 42);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "X:";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(54, 425);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 42);
-            label2.TabIndex = 3;
-            label2.Text = "Y:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 13.875F);
+            this.label2.Location = new System.Drawing.Point(50, 332);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 42);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Y:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(126, 343);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 39);
-            textBox1.TabIndex = 4;
+            this.textBox1.Location = new System.Drawing.Point(116, 268);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(185, 31);
+            this.textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(126, 428);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(200, 39);
-            textBox2.TabIndex = 5;
+            this.textBox2.Location = new System.Drawing.Point(116, 334);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(185, 31);
+            this.textBox2.TabIndex = 5;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(54, 9);
-            label3.Name = "label3";
-            label3.Size = new Size(419, 49);
-            label3.TabIndex = 6;
-            label3.Text = "Координатный ввод";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 16.125F);
+            this.label3.Location = new System.Drawing.Point(50, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(419, 49);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Координатный ввод";
             // 
             // AddPointForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(514, 590);
-            Controls.Add(label3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
-            Controls.Add(groupBox1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "AddPointForm";
-            Text = "AddPointForm";
-            Load += AddPointForm_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(511, 461);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "AddPointForm";
+            this.Text = "AddPointForm";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -167,5 +177,6 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label3;
+
     }
 }

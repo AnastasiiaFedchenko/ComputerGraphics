@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace lab_01
+﻿namespace lab_01
 {
     partial class AboutPoint
     {
@@ -111,6 +108,7 @@ namespace lab_01
             Name = "AboutPoint";
             StartPosition = FormStartPosition.Manual;
             Text = "AboutPoint";
+            Load += AboutPoint_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,6 +121,5 @@ namespace lab_01
         private Label label4;
         private Label label5;
         private Label label6;
-
     }
 }
