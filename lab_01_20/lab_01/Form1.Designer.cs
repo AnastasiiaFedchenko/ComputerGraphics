@@ -52,6 +52,7 @@ namespace lab_01
             // 
             // menuStrip1
             // 
+            this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
@@ -66,7 +67,7 @@ namespace lab_01
             this.ClearToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1440, 60);
+            this.menuStrip1.Size = new System.Drawing.Size(1666, 60);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -78,7 +79,7 @@ namespace lab_01
             this.InformationToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F);
             this.InformationToolStripMenuItem.Name = "InformationToolStripMenuItem";
             this.InformationToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.InformationToolStripMenuItem.Size = new System.Drawing.Size(227, 56);
+            this.InformationToolStripMenuItem.Size = new System.Drawing.Size(227, 52);
             this.InformationToolStripMenuItem.Text = "Информация";
             // 
             // AboutProgramToolStripMenuItem
@@ -100,7 +101,7 @@ namespace lab_01
             this.AddPointToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F);
             this.AddPointToolStripMenuItem.Name = "AddPointToolStripMenuItem";
             this.AddPointToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.AddPointToolStripMenuItem.Size = new System.Drawing.Size(259, 56);
+            this.AddPointToolStripMenuItem.Size = new System.Drawing.Size(259, 52);
             this.AddPointToolStripMenuItem.Text = "Добавить точку";
             this.AddPointToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.AddPointToolStripMenuItem.Click += new System.EventHandler(this.AddPointToolStripMenuItem_Click);
@@ -117,14 +118,14 @@ namespace lab_01
             "2-ое множество"});
             this.SetComboBox.Name = "SetComboBox";
             this.SetComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SetComboBox.Size = new System.Drawing.Size(320, 56);
+            this.SetComboBox.Size = new System.Drawing.Size(320, 52);
             this.SetComboBox.SelectedIndexChanged += new System.EventHandler(this.SetComboBox_SelectedIndexChanged);
             // 
             // CalculateToolStripMenuItem
             // 
             this.CalculateToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F);
             this.CalculateToolStripMenuItem.Name = "CalculateToolStripMenuItem";
-            this.CalculateToolStripMenuItem.Size = new System.Drawing.Size(189, 56);
+            this.CalculateToolStripMenuItem.Size = new System.Drawing.Size(189, 52);
             this.CalculateToolStripMenuItem.Text = "Посчитать";
             this.CalculateToolStripMenuItem.Click += new System.EventHandler(this.CalculateToolStripMenuItem_Click);
             // 
@@ -132,7 +133,7 @@ namespace lab_01
             // 
             this.PlusStripMenuItem.Font = new System.Drawing.Font("Arial", 13.875F);
             this.PlusStripMenuItem.Name = "PlusStripMenuItem";
-            this.PlusStripMenuItem.Size = new System.Drawing.Size(60, 56);
+            this.PlusStripMenuItem.Size = new System.Drawing.Size(60, 52);
             this.PlusStripMenuItem.Text = "+";
             this.PlusStripMenuItem.Click += new System.EventHandler(this.PlusStripMenuItem_Click);
             // 
@@ -140,7 +141,7 @@ namespace lab_01
             // 
             this.MinusStripMenuItem.Font = new System.Drawing.Font("Arial", 13.875F);
             this.MinusStripMenuItem.Name = "MinusStripMenuItem";
-            this.MinusStripMenuItem.Size = new System.Drawing.Size(50, 56);
+            this.MinusStripMenuItem.Size = new System.Drawing.Size(50, 52);
             this.MinusStripMenuItem.Text = "-";
             this.MinusStripMenuItem.Click += new System.EventHandler(this.MinusStripMenuItem_Click);
             // 
@@ -148,7 +149,7 @@ namespace lab_01
             // 
             this.AutoFocusToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F);
             this.AutoFocusToolStripMenuItem.Name = "AutoFocusToolStripMenuItem";
-            this.AutoFocusToolStripMenuItem.Size = new System.Drawing.Size(187, 56);
+            this.AutoFocusToolStripMenuItem.Size = new System.Drawing.Size(187, 52);
             this.AutoFocusToolStripMenuItem.Text = "AutoFocus";
             this.AutoFocusToolStripMenuItem.Click += new System.EventHandler(this.AutoFocusToolStripMenuItem_Click);
             // 
@@ -156,7 +157,7 @@ namespace lab_01
             // 
             this.ClearToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F);
             this.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem";
-            this.ClearToolStripMenuItem.Size = new System.Drawing.Size(125, 56);
+            this.ClearToolStripMenuItem.Size = new System.Drawing.Size(125, 52);
             this.ClearToolStripMenuItem.Text = "Сброс";
             this.ClearToolStripMenuItem.Click += new System.EventHandler(this.ClearToolStripMenuItem_Click);
             // 
@@ -194,11 +195,12 @@ namespace lab_01
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1440, 964);
+            this.ClientSize = new System.Drawing.Size(1666, 1640);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -207,6 +209,7 @@ namespace lab_01
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " Лабораторная работа №1";

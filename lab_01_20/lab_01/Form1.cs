@@ -25,8 +25,8 @@ namespace lab_01
         List<MovePoint> ThePointsDragAndDropping = new List<MovePoint>();
         int DX, DY;
         Shape O;
-        int OX, OY; //                 
-        double Kx; //                             
+        int OX, OY;               
+        double Kx;                             
         double Ky;
         public Form1()
         {
@@ -37,7 +37,7 @@ namespace lab_01
             OX = 100;
             OY = (int)(this.ClientSize.Height - 100);
             O = new Shape(0, 0, Color.Purple);
-            Kx = 100; //                  
+            Kx = 100;
             Ky = 100;
             LineColor = Color.Black;
         }
@@ -274,6 +274,7 @@ namespace lab_01
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            //g.ScaleTransform(0.2f, 0.2f);
             if ((res_red.Count + res_blue.Count) == 8)
                 Draw_result_of_calculation(g);
             Pen pen = new Pen(LineColor, (float)(5 / 4.0));
