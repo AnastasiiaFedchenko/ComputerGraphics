@@ -32,6 +32,14 @@ clean:
 		del $(name)\obj\Debug\*.exe
 		del $(name)\obj\Debug\*.cs
 		del $(name)\obj\Debug\TempPE\*.dll
+		
+		del $(name)\obj\Release\*.Cache
+		del $(name)\obj\Release\*.csproj.*
+		del $(name)\obj\Release\*.resources
+		del $(name)\obj\Release\*.pdb
+		del $(name)\obj\Release\*.exe
+		del $(name)\obj\Release\*.cs
+		del $(name)\obj\Release\TempPE\*.dll
 
 checkall:
 		echo "not done yet"
