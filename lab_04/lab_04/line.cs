@@ -27,6 +27,8 @@ namespace lab_04
             this.p2.Y = y2;
             this.color = color;
         }
+        public Point P1 { get { return this.p1; } }
+        public Point P2 { get { return this.p2; } }
         public void draw(Graphics g, int offset_x, int offset_y, int k) 
         {
             Pen pen = new Pen(color);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace lab_04
 {
@@ -28,6 +29,8 @@ namespace lab_04
         {
             get { return background_color; }
         }
+
+        public List<line> Lines { get { return lines; } }
 
         public void draw(Graphics g, int offset_x, int offset_y, int k)
         {
