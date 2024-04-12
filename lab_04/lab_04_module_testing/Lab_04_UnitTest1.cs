@@ -12,7 +12,7 @@ namespace lab_04_module_testing
     [TestClass]
     public class Lab_04_UnitTest1
     {
-        List<line> read_from_file(string path) 
+        static public List<line> read_from_file(string path) 
         {
             int x1, y1, x2, y2;
             string text;
@@ -54,19 +54,19 @@ namespace lab_04_module_testing
         [TestMethod]
         public void TestCircleCanonic()
         {
-            string path = @"..\..\canonic.txt";
+            string path = @"..\..\canonic_c.txt";
             TestCircleMethod(path, Method.Canonic);
         }
         [TestMethod]
         public void TestCircleParametric()
         {
-            string path = @"..\..\parametric.txt";
+            string path = @"..\..\parametric_c.txt";
             TestCircleMethod(path, Method.Parametric);
         }
         [TestMethod]
         public void TestCircleBresenham()
         {
-            string path = @"..\..\bresenham.txt";
+            string path = @"..\..\bresenham_c.txt";
             TestCircleMethod(path, Method.Bresenham);
         }
     }
