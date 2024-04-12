@@ -31,6 +31,8 @@ namespace lab_04
             get { return background_color; }
         }
 
+        public List<line> Lines { get { return lines; } }
+
         public void draw(Graphics g, int offset_x, int offset_y, int k)
         {
             for (int i = 0; i < lines.Count; i++)
