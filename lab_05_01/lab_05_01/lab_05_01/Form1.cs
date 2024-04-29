@@ -9,10 +9,9 @@ namespace lab_05_01
     public partial class Form1 : Form
     {
         List<Point> vertices;
-        List<(Point, Point)> edges;
+        List<List<Point>> edges;
         List<Point> cross_points;
         Dictionary<int, List<Node>> y_groups;
-        //List<Point> pixels;
         Graphics bitmap_graphics;
         Bitmap picture;
         bool closed;
@@ -20,7 +19,7 @@ namespace lab_05_01
         {
             InitializeComponent();
             vertices = new List<Point>();
-            edges = new List<(Point, Point)>();
+            edges = new List<List<Point>>();
             cross_points = new List<Point>();
             //pixels = new List<Point>();
             picture = new Bitmap(PictureBox.Width, PictureBox.Width);
@@ -34,7 +33,12 @@ namespace lab_05_01
             {
                 vertices.Add(new Point(e.X, e.Y));
                 if (vertices.Count > 1)
-                    edges.Add((vertices[vertices.Count - 2], vertices[vertices.Count - 1]));
+                {
+                    List<Point> temp = new List<Point>();
+                    temp.Add(vertices[vertices.Count - 2]);
+                    temp.Add(vertices[vertices.Count - 1]);
+                    edges.Add(temp);
+                }
                 PointsListBox.Items.Add(vertices[vertices.Count - 1]);
                 PictureBox.Invalidate();
             }
@@ -47,8 +51,9 @@ namespace lab_05_01
             foreach (Point p in vertices)
                 bitmap_graphics.FillRectangle(brush, p.X - 1, p.Y - 1, 2, 2);
             for (int i = 0; i < edges.Count; i++)
-                bitmap_graphics.DrawLine(pen, edges[i].Item1, edges[i].Item2);
-            PictureBox.Image = picture;
+                bitmap_graphics.DrawLine(pen, edges[i][0], edges[i][1]);
+            //PictureBox.Image = picture;
+            e.Graphics.DrawImage(picture, 0, 0);
         }
 
         private void AddPointButton_Click(object sender, EventArgs e)
@@ -66,7 +71,12 @@ namespace lab_05_01
             }
             vertices.Add(new Point(x, y));
             if (vertices.Count > 1)
-                edges.Add((vertices[vertices.Count - 2], vertices[vertices.Count - 1]));
+            {
+                List<Point> temp = new List<Point>();
+                temp.Add(vertices[vertices.Count - 2]);
+                temp.Add(vertices[vertices.Count - 1]);
+                edges.Add(temp);
+            }
             PointsListBox.Items.Add(vertices[vertices.Count - 1]);
             PictureBox.Invalidate();
         }
@@ -77,6 +87,8 @@ namespace lab_05_01
             vertices.Clear();
             edges.Clear();
             cross_points.Clear();
+            Brush brush = new SolidBrush(Form1.DefaultBackColor);
+            bitmap_graphics.FillRectangle(brush, 0, 0, PictureBox.Width, PictureBox.Height);
             PointsListBox.Items.Clear();
             PictureBox.Invalidate();
         }
@@ -87,7 +99,10 @@ namespace lab_05_01
             {
                 if (vertices.Count > 3)
                 {
-                    edges.Add((vertices[vertices.Count - 1], vertices[0]));
+                    List<Point> temp = new List<Point>();
+                    temp.Add(vertices[vertices.Count - 1]);
+                    temp.Add(vertices[0]);
+                    edges.Add(temp);
                     closed = true;
                 }
             }
@@ -174,16 +189,16 @@ namespace lab_05_01
             {
                 foreach (var edge in edges) 
                 {
-                    if (edge.Item1.Y != edge.Item2.Y && 
-                        y >= Math.Min(edge.Item1.Y, edge.Item2.Y) && y < Math.Max(edge.Item1.Y, edge.Item2.Y)) 
+                    if (edge[0].Y != edge[1].Y && 
+                        y >= Math.Min(edge[0].Y, edge[1].Y) && y < Math.Max(edge[0].Y, edge[1].Y)) 
                     {
-                        cross_points.Add(new Point((int)cross_point_x(y, edge.Item1, edge.Item2), (int)y));
+                        cross_points.Add(new Point((int)cross_point_x(y, edge[0], edge[1]), (int)y));
                     }
                 }
             }
             make_y_groups(min_y, max_y);
             foreach (var edge in edges)
-                update_y_groups(edge.Item1, edge.Item2);
+                update_y_groups(edge[0], edge[1]);
             List<Node> active_edges = new List<Node> ();
             while (max_y > min_y)
             {
