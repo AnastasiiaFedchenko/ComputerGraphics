@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab_05_01
@@ -10,20 +13,23 @@ namespace lab_05_01
     {
         List<Point> vertices;
         List<List<Point>> edges;
-        List<Point> cross_points;
+        //List<Point> cross_points;
         Dictionary<int, List<Node>> y_groups;
         Graphics bitmap_graphics;
         Bitmap picture;
+
+        List<Line> lines = null;
         bool closed;
         public Form1()
         {
             InitializeComponent();
             vertices = new List<Point>();
             edges = new List<List<Point>>();
-            cross_points = new List<Point>();
+            //cross_points = new List<Point>();
             //pixels = new List<Point>();
             picture = new Bitmap(PictureBox.Width, PictureBox.Width);
             bitmap_graphics = Graphics.FromImage(picture);
+
             closed = false;
         }
 
@@ -44,16 +50,32 @@ namespace lab_05_01
             }
         }
 
+        async Task DrawTheLines(Pen pen, Graphics g) 
+        {
+            foreach (Line line in lines)
+            {
+                bitmap_graphics.DrawLine(pen, line.X1, line.Y1, line.X2, line.Y2);
+                g.DrawImage(picture, 0, 0);
+                await Task.Delay(100);
+            }
+        }
+
         private void PictureBox_Paint(object sender, PaintEventArgs e)
         {
             Brush brush = new SolidBrush(ColorButton.BackColor);
             Pen pen = new Pen(ColorButton.BackColor, 1);
+            Graphics g = e.Graphics;
             foreach (Point p in vertices)
                 bitmap_graphics.FillRectangle(brush, p.X - 1, p.Y - 1, 2, 2);
             for (int i = 0; i < edges.Count; i++)
                 bitmap_graphics.DrawLine(pen, edges[i][0], edges[i][1]);
             //PictureBox.Image = picture;
-            e.Graphics.DrawImage(picture, 0, 0);
+            if (lines != null)
+                Task.Run(async () =>
+                {
+                    await DrawTheLines(pen, g);
+                });
+            g.DrawImage(picture, 0, 0);
         }
 
         private void AddPointButton_Click(object sender, EventArgs e)
@@ -86,7 +108,7 @@ namespace lab_05_01
             closed = false;
             vertices.Clear();
             edges.Clear();
-            cross_points.Clear();
+            //cross_points.Clear();
             Brush brush = new SolidBrush(Form1.DefaultBackColor);
             bitmap_graphics.FillRectangle(brush, 0, 0, PictureBox.Width, PictureBox.Height);
             PointsListBox.Items.Clear();
@@ -159,7 +181,7 @@ namespace lab_05_01
             }
         }
 
-        private static int CompareNodesByX(Node a, Node b) 
+        private static int CompareNodesByX(Node a, Node b)
         {
             return (int)(a.X - b.X);
         }
@@ -170,36 +192,41 @@ namespace lab_05_01
             active_edges.Sort(CompareNodesByX);
         }
 
-        private double cross_point_x(double y, Point p1, Point p2) 
+        private double cross_point_x(double y, Point p1, Point p2)
         {
-            return ((p2.X - p1.X)*(y - p1.Y) + p1.X * (p2.Y - p1.Y)) / (p2.Y - p1.Y);
+            return ((p2.X - p1.X) * (y - p1.Y) + p1.X * (p2.Y - p1.Y)) / (p2.Y - p1.Y);
         }
 
         private void draw_part(List<Node> active_edges, int y)
         {
-            Pen pen = new Pen(ColorButton.BackColor, 1);
+            
+            //Pen pen = new Pen(ColorButton.BackColor, 1);
             for (int i = 0; i < active_edges.Count; i += 2)
-                bitmap_graphics.DrawLine(pen, (int)active_edges[i].X, y, (int)active_edges[i + 1].X, y);
-        }
-        private void ColorThePicture(bool delay) 
-        {
-            int min_y =Min_y();
-            int max_y = Max_y();
-            for (double y = min_y + 0.5; y < max_y; y += 1.0) 
             {
-                foreach (var edge in edges) 
+                //bitmap_graphics.DrawLine(pen, (int)active_edges[i].X, y, (int)active_edges[i + 1].X, y);
+                lines.Add(new Line((int)active_edges[i].X, y, (int)active_edges[i + 1].X, y));
+            }
+        }
+        private void ColorThePicture(bool delay)
+        {
+            int min_y = Min_y();
+            int max_y = Max_y();
+            lines = new List<Line>();
+            /*for (double y = min_y + 0.5; y < max_y; y += 1.0)
+            {
+                foreach (var edge in edges)
                 {
-                    if (edge[0].Y != edge[1].Y && 
-                        y >= Math.Min(edge[0].Y, edge[1].Y) && y < Math.Max(edge[0].Y, edge[1].Y)) 
+                    if (edge[0].Y != edge[1].Y &&
+                        y >= Math.Min(edge[0].Y, edge[1].Y) && y < Math.Max(edge[0].Y, edge[1].Y))
                     {
                         cross_points.Add(new Point((int)cross_point_x(y, edge[0], edge[1]), (int)y));
                     }
                 }
-            }
+            }*/
             make_y_groups(min_y, max_y);
             foreach (var edge in edges)
                 update_y_groups(edge[0], edge[1]);
-            List<Node> active_edges = new List<Node> ();
+            List<Node> active_edges = new List<Node>();
             while (max_y > min_y)
             {
                 iterator_active_edges(active_edges);
@@ -234,18 +261,35 @@ namespace lab_05_01
                 ColorButton.BackColor = MyDialog.Color;
         }
     }
-    public class Node 
+    public class Node
     {
         double x;
         double dx, dy;
-        public Node(int x, double dx, double dy) 
+        public Node(int x, double dx, double dy)
         {
             this.x = x;
             this.dx = dx;
-            this.dy = dy; 
+            this.dy = dy;
         }
-        public double X { get { return x; } set {  x = value; } }
+        public double X { get { return x; } set { x = value; } }
         public double Dx { get { return dx; } set { dx = value; } }
         public double Dy { get { return dy; } set { dy = value; } }
+    }
+
+    public class Line
+    {
+        int x1, y1, x2, y2;
+        public Line(int x1, int y1, int x2, int y2)
+        {
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+        }
+        public int X1 { get { return x1; } set { x1 = value; } }
+        public int Y1 { get { return y1; } set { y1 = value; } }
+        public int X2 { get { return x2; } set { x2 = value; } }
+        public int Y2 { get { return y2; } set { y2 = value; } }
+
     }
 }
