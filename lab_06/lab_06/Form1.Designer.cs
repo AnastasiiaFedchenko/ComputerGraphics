@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.AddZatravka = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.ColorThePictureButton = new System.Windows.Forms.Button();
+            this.MakeCircleButton = new System.Windows.Forms.Button();
+            this.MakeEllipseButton = new System.Windows.Forms.Button();
+            this.RyTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.RxTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.RTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.OyTextBox = new System.Windows.Forms.TextBox();
+            this.OxTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -66,21 +66,21 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button10);
+            this.groupBox1.Controls.Add(this.AddZatravka);
             this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.ColorThePictureButton);
+            this.groupBox1.Controls.Add(this.MakeCircleButton);
+            this.groupBox1.Controls.Add(this.MakeEllipseButton);
+            this.groupBox1.Controls.Add(this.RyTextBox);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.RxTextBox);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.RTextBox);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.OyTextBox);
+            this.groupBox1.Controls.Add(this.OxTextBox);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button5);
@@ -101,14 +101,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Меню:";
             // 
-            // button10
+            // AddZatravka
             // 
-            this.button10.Location = new System.Drawing.Point(22, 368);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(483, 60);
-            this.button10.TabIndex = 23;
-            this.button10.Text = "Построить затравку";
-            this.button10.UseVisualStyleBackColor = true;
+            this.AddZatravka.Location = new System.Drawing.Point(22, 368);
+            this.AddZatravka.Name = "AddZatravka";
+            this.AddZatravka.Size = new System.Drawing.Size(483, 60);
+            this.AddZatravka.TabIndex = 23;
+            this.AddZatravka.Text = "Построить затравку";
+            this.AddZatravka.UseVisualStyleBackColor = true;
+            this.AddZatravka.Click += new System.EventHandler(this.AddZatravka_Click);
             // 
             // button9
             // 
@@ -120,40 +121,43 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.CleanButton_Click);
             // 
-            // button8
+            // ColorThePictureButton
             // 
-            this.button8.Location = new System.Drawing.Point(24, 895);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(447, 76);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "Выполнить закраску";
-            this.button8.UseVisualStyleBackColor = true;
+            this.ColorThePictureButton.Location = new System.Drawing.Point(24, 895);
+            this.ColorThePictureButton.Name = "ColorThePictureButton";
+            this.ColorThePictureButton.Size = new System.Drawing.Size(447, 76);
+            this.ColorThePictureButton.TabIndex = 4;
+            this.ColorThePictureButton.Text = "Выполнить закраску";
+            this.ColorThePictureButton.UseVisualStyleBackColor = true;
+            this.ColorThePictureButton.Click += new System.EventHandler(this.ColorThePictureButton_Click);
             // 
-            // button7
+            // MakeCircleButton
             // 
-            this.button7.Location = new System.Drawing.Point(24, 756);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(225, 84);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "Построить окружность";
-            this.button7.UseVisualStyleBackColor = true;
+            this.MakeCircleButton.Location = new System.Drawing.Point(24, 756);
+            this.MakeCircleButton.Name = "MakeCircleButton";
+            this.MakeCircleButton.Size = new System.Drawing.Size(225, 133);
+            this.MakeCircleButton.TabIndex = 21;
+            this.MakeCircleButton.Text = "Построить окружность";
+            this.MakeCircleButton.UseVisualStyleBackColor = true;
+            this.MakeCircleButton.Click += new System.EventHandler(this.MakeCircleButton_Click);
             // 
-            // button6
+            // MakeEllipseButton
             // 
-            this.button6.Location = new System.Drawing.Point(272, 756);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(225, 84);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Построить эллипс";
-            this.button6.UseVisualStyleBackColor = true;
+            this.MakeEllipseButton.Location = new System.Drawing.Point(272, 756);
+            this.MakeEllipseButton.Name = "MakeEllipseButton";
+            this.MakeEllipseButton.Size = new System.Drawing.Size(225, 133);
+            this.MakeEllipseButton.TabIndex = 4;
+            this.MakeEllipseButton.Text = "Построить эллипс";
+            this.MakeEllipseButton.UseVisualStyleBackColor = true;
+            this.MakeEllipseButton.Click += new System.EventHandler(this.MakeEllipseButton_Click);
             // 
-            // textBox7
+            // RyTextBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(344, 695);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(153, 44);
-            this.textBox7.TabIndex = 19;
-            this.textBox7.Text = "0";
+            this.RyTextBox.Location = new System.Drawing.Point(344, 695);
+            this.RyTextBox.Name = "RyTextBox";
+            this.RyTextBox.Size = new System.Drawing.Size(153, 44);
+            this.RyTextBox.TabIndex = 19;
+            this.RyTextBox.Text = "0";
             // 
             // label13
             // 
@@ -164,13 +168,13 @@
             this.label13.TabIndex = 20;
             this.label13.Text = "Ry:";
             // 
-            // textBox6
+            // RxTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(344, 634);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(153, 44);
-            this.textBox6.TabIndex = 17;
-            this.textBox6.Text = "0";
+            this.RxTextBox.Location = new System.Drawing.Point(344, 634);
+            this.RxTextBox.Name = "RxTextBox";
+            this.RxTextBox.Size = new System.Drawing.Size(153, 44);
+            this.RxTextBox.TabIndex = 17;
+            this.RxTextBox.Text = "0";
             // 
             // label12
             // 
@@ -181,13 +185,13 @@
             this.label12.TabIndex = 18;
             this.label12.Text = "Rx:";
             // 
-            // textBox5
+            // RTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(95, 634);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(153, 44);
-            this.textBox5.TabIndex = 15;
-            this.textBox5.Text = "0";
+            this.RTextBox.Location = new System.Drawing.Point(95, 634);
+            this.RTextBox.Name = "RTextBox";
+            this.RTextBox.Size = new System.Drawing.Size(153, 44);
+            this.RTextBox.TabIndex = 15;
+            this.RTextBox.Text = "5";
             // 
             // label11
             // 
@@ -216,21 +220,21 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Окружность:";
             // 
-            // textBox3
+            // OyTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(344, 525);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(153, 44);
-            this.textBox3.TabIndex = 13;
-            this.textBox3.Text = "0";
+            this.OyTextBox.Location = new System.Drawing.Point(344, 525);
+            this.OyTextBox.Name = "OyTextBox";
+            this.OyTextBox.Size = new System.Drawing.Size(153, 44);
+            this.OyTextBox.TabIndex = 13;
+            this.OyTextBox.Text = "100";
             // 
-            // textBox4
+            // OxTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(95, 522);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(153, 44);
-            this.textBox4.TabIndex = 10;
-            this.textBox4.Text = "0";
+            this.OxTextBox.Location = new System.Drawing.Point(95, 522);
+            this.OxTextBox.Name = "OxTextBox";
+            this.OxTextBox.Size = new System.Drawing.Size(153, 44);
+            this.OxTextBox.TabIndex = 10;
+            this.OxTextBox.Text = "100";
             // 
             // label7
             // 
@@ -276,7 +280,7 @@
             this.YTextBox.Name = "YTextBox";
             this.YTextBox.Size = new System.Drawing.Size(168, 44);
             this.YTextBox.TabIndex = 8;
-            this.YTextBox.Text = "0";
+            this.YTextBox.Text = "101";
             // 
             // XTextBox
             // 
@@ -284,7 +288,7 @@
             this.XTextBox.Name = "XTextBox";
             this.XTextBox.Size = new System.Drawing.Size(168, 44);
             this.XTextBox.TabIndex = 2;
-            this.XTextBox.Text = "0";
+            this.XTextBox.Text = "100";
             // 
             // label5
             // 
@@ -312,6 +316,7 @@
             this.FillingColorButton.Size = new System.Drawing.Size(261, 52);
             this.FillingColorButton.TabIndex = 4;
             this.FillingColorButton.UseVisualStyleBackColor = false;
+            this.FillingColorButton.Click += new System.EventHandler(this.FillingColorButton_Click);
             // 
             // LineColorButton
             // 
@@ -321,6 +326,7 @@
             this.LineColorButton.Size = new System.Drawing.Size(261, 52);
             this.LineColorButton.TabIndex = 1;
             this.LineColorButton.UseVisualStyleBackColor = false;
+            this.LineColorButton.Click += new System.EventHandler(this.LineColorButton_Click);
             // 
             // label2
             // 
@@ -350,6 +356,10 @@
             this.PictureBox.TabStop = false;
             this.PictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox_Paint);
             this.PictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            this.PictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDoubleClick);
+            this.PictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            this.PictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseMove);
+            this.PictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseUp);
             // 
             // PointsListBox
             // 
@@ -403,24 +413,24 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox PictureBox;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox OyTextBox;
+        private System.Windows.Forms.TextBox OxTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button AddPointButton;
         private System.Windows.Forms.ListBox PointsListBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button AddZatravka;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Button ColorThePictureButton;
+        private System.Windows.Forms.Button MakeCircleButton;
+        private System.Windows.Forms.Button MakeEllipseButton;
+        private System.Windows.Forms.TextBox RyTextBox;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox RxTextBox;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox RTextBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
