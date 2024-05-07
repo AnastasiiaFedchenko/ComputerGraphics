@@ -1,0 +1,49 @@
+name=lab_04
+run :
+		lab_04\bin\Release\$(name).exe
+
+format :
+		echo "i can't figure out how to do it"
+
+release :
+		msbuild $(name)\$(name).csproj /t:Build /p:Configuration=Release /p:TargetFrameworkVersion=v4.0
+debug:
+		msbuild /t:Build /p:Configuration=Debug /p:TargetFrameworkVersion=v4.0
+
+clean:		
+		del /q $(name)\bin\Debug\*
+		del /q $(name)\bin\Debug\ru\*
+		
+		del /q $(name)\bin\Release\*
+		del /q $(name)\bin\Release\ru\*
+		
+		del /q $(name)\obj\Debug\*
+		del /q $(name)\obj\Debug\TempPE\*
+		
+		del /q $(name)\obj\Release\*
+		del /q $(name)\obj\Release\TempPE\*
+
+		del /q $(name)_module_testing\bin\Debug\*
+		del /q $(name)_module_testing\bin\Debug\ru\*
+		
+		del /q $(name)_module_testing\bin\Release\*
+		del /q $(name)_module_testing\bin\Release\ru\*
+		
+		del /q $(name)_module_testing\obj\Debug\*
+		del /q $(name)_module_testing\obj\Debug\TempPE\*
+		
+		del /q $(name)_module_testing\obj\Release\*
+		del /q $(name)_module_testing\obj\Release\TempPE\*
+
+checkall:
+		msbuild $(name)_module_testing\$(name)_module_testing.csproj /t:Build /p:Configuration=Release
+		vstest.console $(name)_module_testing\bin\Release\$(name)_module_testing.dll
+
+report-unittesting-latest.txt:
+		echo "not done yet"
+
+report-functesting-latest.txt:
+		echo "not done yet"
+
+saveolds:
+		echo "not done yet"
