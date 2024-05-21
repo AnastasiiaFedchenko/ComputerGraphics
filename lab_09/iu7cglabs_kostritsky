@@ -1,0 +1,46 @@
+name=lab_09
+run :
+		lab_09\bin\Release\$(name).exe
+
+format :
+		echo "i can't figure out how to do it"
+
+release :
+		msbuild /t:Build /p:Configuration=Release /p:TargetFrameworkVersion=v4.0
+debug:
+		msbuild /t:Build /p:Configuration=Debug /p:TargetFrameworkVersion=v4.0
+
+clean:		
+		del $(name)\bin\Debug\*.exe
+		del $(name)\bin\Debug\*.exe.config
+		del $(name)\bin\Debug\*.pdb
+		del $(name)\bin\Debug\*.dll
+		del $(name)\bin\Debug\*.nlp
+		del $(name)\bin\Debug\ru\*.dll
+		
+		del $(name)\bin\Release\*.exe
+		del $(name)\bin\Release\*.exe.config
+		del $(name)\bin\Release\*.pdb
+		del $(name)\bin\Release\*.dll
+		del $(name)\bin\Release\*.nlp
+		del $(name)\bin\Release\ru\*.dll
+		
+		del $(name)\obj\Debug\*.Cache
+		del $(name)\obj\Debug\*.csproj.*
+		del $(name)\obj\Debug\*.resources
+		del $(name)\obj\Debug\*.pdb
+		del $(name)\obj\Debug\*.exe
+		del $(name)\obj\Debug\*.cs
+		del $(name)\obj\Debug\TempPE\*.dll
+
+checkall:
+		echo "not done yet"
+
+report-unittesting-latest.txt:
+		echo "not done yet"
+
+report-functesting-latest.txt:
+		echo "not done yet"
+
+saveolds:
+		echo "not done yet"
