@@ -58,6 +58,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog3 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog4 = new System.Windows.Forms.ColorDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
@@ -309,6 +312,7 @@
             this.ResultColorButton.Size = new System.Drawing.Size(297, 58);
             this.ResultColorButton.TabIndex = 4;
             this.ResultColorButton.UseVisualStyleBackColor = false;
+            this.ResultColorButton.Click += new System.EventHandler(this.ResultColorButton_Click);
             // 
             // label3
             // 
@@ -328,6 +332,7 @@
             this.FrameColorButton.Size = new System.Drawing.Size(297, 58);
             this.FrameColorButton.TabIndex = 2;
             this.FrameColorButton.UseVisualStyleBackColor = false;
+            this.FrameColorButton.Click += new System.EventHandler(this.FrameColorButton_Click);
             // 
             // label2
             // 
@@ -347,6 +352,7 @@
             this.LineColorButton.Size = new System.Drawing.Size(297, 58);
             this.LineColorButton.TabIndex = 1;
             this.LineColorButton.UseVisualStyleBackColor = false;
+            this.LineColorButton.Click += new System.EventHandler(this.LineColorButton_Click);
             // 
             // label1
             // 
@@ -418,6 +424,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog2;
+        private System.Windows.Forms.ColorDialog colorDialog3;
+        private System.Windows.Forms.ColorDialog colorDialog4;
     }
 }
 

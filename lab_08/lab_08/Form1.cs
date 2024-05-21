@@ -185,6 +185,33 @@ namespace lab_08
             result = true;
             PictureBox.Invalidate();
         }
+
+        private void LineColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = LineColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                LineColorButton.BackColor = MyDialog.Color;
+        }
+
+        private void FrameColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = FrameColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                FrameColorButton.BackColor = MyDialog.Color;
+        }
+
+        private void ResultColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = ResultColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                ResultColorButton.BackColor = MyDialog.Color;
+        }
     }
     public class Line
     {
