@@ -116,7 +116,6 @@
             this.Close.TabIndex = 2;
             this.Close.Text = "Замкнуть отсекатель";
             this.Close.UseVisualStyleBackColor = true;
-            //this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
             // label15
             // 
@@ -354,6 +353,7 @@
             this.ResultColorButton.Size = new System.Drawing.Size(297, 58);
             this.ResultColorButton.TabIndex = 4;
             this.ResultColorButton.UseVisualStyleBackColor = false;
+            this.ResultColorButton.Click += new System.EventHandler(this.ResultColorButton_Click);
             // 
             // label3
             // 
@@ -373,6 +373,7 @@
             this.FrameColorButton.Size = new System.Drawing.Size(297, 58);
             this.FrameColorButton.TabIndex = 2;
             this.FrameColorButton.UseVisualStyleBackColor = false;
+            this.FrameColorButton.Click += new System.EventHandler(this.FrameColorButton_Click);
             // 
             // label2
             // 
@@ -392,6 +393,7 @@
             this.LineColorButton.Size = new System.Drawing.Size(297, 58);
             this.LineColorButton.TabIndex = 1;
             this.LineColorButton.UseVisualStyleBackColor = false;
+            this.LineColorButton.Click += new System.EventHandler(this.LineColorButton_Click);
             // 
             // label1
             // 
