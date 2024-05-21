@@ -40,24 +40,6 @@ namespace lab_07
         {
             if (e.Button == MouseButtons.Left) // добавляем точки отсекателя
             {
-                /*if (edge_now == null) 
-                {
-                    edge_now = new Line();
-                    edge_now.X1 = e.X;
-                    edge_now.Y1 = e.Y;
-                }
-                else
-                {
-                    edge_now.X2 = e.X;
-                    edge_now.Y2 = e.Y;
-                    frame.Add(edge_now);
-                    int x, y;
-                    x = edge_now.X2;
-                    y = edge_now.Y2;
-                    edge_now = new Line();
-                    edge_now.X1 = x;
-                    edge_now.Y1 = y;
-                }*/
                 if (frame == null)
                 {
                     frame = new Frame();
@@ -207,10 +189,12 @@ namespace lab_07
         {
             frame = null;
             //edge_now = null;
-            lines = null;
+            lines = new List<Line>();
             line_now = null;
             closed = false;
             result = false;
+            bitmap_graphics.FillRectangle(new SolidBrush(Form1.DefaultBackColor),
+                0, 0, PictureBox.Width, PictureBox.Height);
             PictureBox.Invalidate();
         }
 
@@ -219,6 +203,33 @@ namespace lab_07
             T temp = a;
             a = b;
             b = temp;
+        }
+
+        private void LineColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = LineColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                LineColorButton.BackColor = MyDialog.Color;
+        }
+
+        private void FrameColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = FrameColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                FrameColorButton.BackColor = MyDialog.Color;
+        }
+
+        private void ResultColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.Color = ResultColorButton.BackColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                ResultColorButton.BackColor = MyDialog.Color;
         }
 
         // Проверяет, используя коды двух точек, пересечение бесконечной стороны и линии
@@ -231,7 +242,7 @@ namespace lab_07
             else
                 return false;
         }
-        void CohenSutherland(int x1, int y1, int x2, int y2)
+        void CohenSutherland(float x1, float y1, float x2, float y2)
         {
             Pen pen = new Pen(ResultColorButton.BackColor, 3);
             int orientation_flag = 0; // общего
@@ -299,8 +310,8 @@ namespace lab_07
         }
         private void CutOff_Click(object sender, EventArgs e)
         {
-            bitmap_graphics.FillRectangle(new SolidBrush(Form1.DefaultBackColor),
-                                          0, 0, PictureBox.Width, PictureBox.Height);
+            //bitmap_graphics.FillRectangle(new SolidBrush(Form1.DefaultBackColor),
+                                         // 0, 0, PictureBox.Width, PictureBox.Height);
             for (int i = 0; i < lines.Count(); i++)
             {
                 CohenSutherland(lines[i].X1, lines[i].Y1, lines[i].X2, lines[i].Y2);
@@ -311,7 +322,7 @@ namespace lab_07
     }
     public class Line
     {
-        int x1, y1, x2, y2;
+        float x1, y1, x2, y2;
         public Line()
         {
             this.x1 = 0;
@@ -319,26 +330,26 @@ namespace lab_07
             this.x2 = 0;
             this.y2 = 0;
         }
-        public Line(int x1, int y1, int x2, int y2)
+        public Line(float x1, float y1, float x2, float y2)
         {
             this.x1 = x1;
             this.y1 = y1;
             this.x2 = x2;
             this.y2 = y2;
         }
-        public int X1 { get { return x1; } set { x1 = value; } }
-        public int Y1 { get { return y1; } set { y1 = value; } }
-        public int X2 { get { return x2; } set { x2 = value; } }
-        public int Y2 { get { return y2; } set { y2 = value; } }
+        public float X1 { get { return x1; } set { x1 = value; } }
+        public float Y1 { get { return y1; } set { y1 = value; } }
+        public float X2 { get { return x2; } set { x2 = value; } }
+        public float Y2 { get { return y2; } set { y2 = value; } }
 
     }
     class Frame
     {
-        public int left = 0;
-        public int right = 0;
-        public int up = 0;
-        public int down = 0;
-        public int GetPositioning(int x, int y)
+        public float left = 0;
+        public float right = 0;
+        public float up = 0;
+        public float down = 0;
+        public int GetPositioning(float x, float y)
         {
             int res = 0;
             if (x < left)
@@ -351,7 +362,7 @@ namespace lab_07
                 res += 1;
             return res;
         }
-        public int IsVisible(int x1, int y1, int x2, int y2)
+        public int IsVisible(float x1, float y1, float x2, float y2)
         {
             int res1 = GetPositioning(x1, y1);
             int res2 = GetPositioning(x2, y2);
@@ -366,7 +377,7 @@ namespace lab_07
             }
             return visibility;
         }
-        public int this[int index]
+        public float this[int index]
         {
             get
             {
