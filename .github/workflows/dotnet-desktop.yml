@@ -57,7 +57,7 @@ jobs:
 
     env:
       Solution_Name: lab_04.sln                                                       # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: lab_04\lab_04_module_testing\lab_04_module_testing.csproj    # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj
+      Test_Project_Path: ..\..\lab_04\lab_04_module_testing\lab_04_module_testing.csproj    # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj
     
     steps:
     - name: Checkout
