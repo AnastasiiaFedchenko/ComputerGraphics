@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore lab_04
     - name: Build
-      run: dotnet build lab_04/lab_04.sln --no-restore
+      run: dotnet build lab_04/lab_04.sln
     - name: Test
       run: dotnet test --no-build --verbosity normal
